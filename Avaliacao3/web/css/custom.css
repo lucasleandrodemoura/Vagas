@@ -1,0 +1,40 @@
+body {
+    color: #333;
+    background-color: #f6f6f6;
+    padding-top: 65px;
+    font-family: "Helvetica Neue, Helvetica, Arial, sans-serif";
+    font-size: 14px;
+    line-height: 1.49;
+}
+
+.thumbnail:hover {
+    background-color: #bce8f1;
+}
+
+#voltar{
+    width: 100%;
+}
+
+.btn {
+    text-decoration: #269abc;
+}
+
+.nav-default {
+    background-color: #f3f3ef;
+}
+
+a{
+    color: #000;
+}
+
+.conteudo {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+
+.block-grid {
+    background-color: white;
+}
