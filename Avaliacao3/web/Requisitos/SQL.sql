@@ -1,5 +1,3 @@
-﻿use db;
-
 CREATE TABLE administradores (
   codigo_usuario SERIAL,
   email varchar(45) NOT NULL UNIQUE,
@@ -138,7 +136,8 @@ CREATE TABLE vagas (
 
 
 CREATE TABLE processo_seletivo (
-  codigo_vaga SERIAL,
+  codigo_vaga INTEGER NOT NULL,
+  candidato_selecionado INTEGER NOT NULL,
   parecer varchar(45) DEFAULT NULL,
   recrutador INTEGER NOT NULL,
   PRIMARY KEY (codigo_vaga,candidato_selecionado),

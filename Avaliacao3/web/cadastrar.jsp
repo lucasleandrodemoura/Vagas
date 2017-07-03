@@ -12,7 +12,7 @@
 
 
     <%@ include file="includes/header.jsp" %>
-    <%@ page import ="br.univates.progweb.Curriculo" %>
+    <%@ page import ="br.univates.progweb.models.Curriculo" %>
     
 
                     

@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.univates.progweb;
+
+
 
 public class Administradores{
     private Integer codigoUsuario;
@@ -51,6 +52,9 @@ public class Administradores{
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
+    
+    
+    
    
     
 }
