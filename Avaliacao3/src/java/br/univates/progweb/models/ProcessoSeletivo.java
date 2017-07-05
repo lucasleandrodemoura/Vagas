@@ -1,3 +1,8 @@
+package br.univates.progweb.models;
+
+
+import br.univates.progweb.models.Vagas;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
