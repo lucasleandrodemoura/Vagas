@@ -20,7 +20,10 @@
                 x.setSenha(senha);
                 if(x.logar()){
                     session.setAttribute("usuario", x.getCpf());
-                    session.setAttribute("nome", x.getNome());
+                    session.setAttribute("id_curriculo", x.getIdcurriculo());
+                    session.setAttribute("email", x.getEmail());                    
+                    session.setAttribute("nome", x.getNome());                  
+                    
                     response.sendRedirect("editar_curriculo.jsp");
                 }else{
                     response.sendRedirect("index.jsp");

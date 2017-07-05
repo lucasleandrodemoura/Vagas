@@ -173,14 +173,74 @@ public class Curriculo {
         this.pdf = pdf;
     }
     
+    
+    public void gravar(){
+        Conexao conexao;
+        String SQL = "";
+        
+        
+        
+        
+        
+        
+        //Edição
+        if(this.getIdcurriculo()==null){
+            
+        }else{
+            SQL = "INSERT INTO curriculo(" +
+"                        pretencao_salarial,"
+                    + "nome, "
+                    + "estado_civil, "
+                    + "cpf,endereco, bairro, telefone, celular, email, " +
+"                       senha, observacoes, pdf, foto)" +
+"                     VALUES ("+this.getPretencaoSalarial()+", "
+                    + "'"+this.getNome()+"', "
+                    + ""+this.getEstadoCivil()+", "
+                    + "'"+this.getCpf()+"',"
+                    + "'"+this.getEndereco()+"',"
+                    + "'"+this.getBairro()+"',"
+                    + "'"+this.getCelular()+"',"
+                    + "'"+this.getEmail()+"',"
+                    + "'"+this.getSenha()+"',"
+                    + "'"+this.getObservacoes()+"',"
+                    + "'"+this.getPdf()+"',"
+                    + "'"+this.getFoto()+"');";
+        }
+        
+        
+        
+        try {
+            conexao = new Conexao();
+            conexao.incluir(SQL);
+            conexao.fechar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Curriculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     public boolean logar(){
+        
         boolean retorno = false;
         try {
             Conexao conexao = new Conexao();
-            ResultSet selecionar = conexao.selecionar("select count(*) as contagem from curriculo where cpf = '"+this.getCpf()+"' and senha = '"+this.getSenha()+"'");
-            selecionar.next();
-            int contagem = Integer.parseInt(selecionar.getString("contagem"));
-            if(contagem>0){
+            ResultSet selecionar = conexao.selecionar("select *  from curriculo where cpf = '"+this.getCpf()+"' and senha = '"+this.getSenha()+"'");
+            
+            while(selecionar.next()){
+                this.setBairro(selecionar.getString("bairro"));
+                this.setCelular(selecionar.getString("celular"));
+                this.setCpf(selecionar.getString("cpf"));
+                this.setEmail(selecionar.getString("email"));
+                this.setEndereco(selecionar.getString("endereco"));
+                this.setEstadoCivil(Integer.parseInt(selecionar.getString("estado_civil")));
+                this.setIdcurriculo(Integer.parseInt(selecionar.getString("id_curriculo")));
+                this.setNome(selecionar.getString("nome"));
+                this.setObservacoes(selecionar.getString("observacao"));
+                this.setPdf(selecionar.getString("pdf"));
+                this.setPretencaoSalarial(Float.parseFloat(selecionar.getString("pretencao_salarial")));
+                this.setSenha(selecionar.getString("senha"));
+                this.setTelefone(selecionar.getString("telefone"));
+                
                 retorno = true;
             }
             conexao.fechar();
