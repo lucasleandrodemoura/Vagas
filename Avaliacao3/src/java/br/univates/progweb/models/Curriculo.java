@@ -7,7 +7,12 @@ package br.univates.progweb.models;
  */
 
 
+import br.univates.progweb.util.Conexao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -166,6 +171,24 @@ public class Curriculo {
 
     public void setPdf(String pdf) {
         this.pdf = pdf;
+    }
+    
+    public boolean logar(){
+        boolean retorno = false;
+        try {
+            Conexao conexao = new Conexao();
+            ResultSet selecionar = conexao.selecionar("select count(*) as contagem from curriculo where cpf = '"+this.getCpf()+"' and senha = '"+this.getSenha()+"'");
+            selecionar.next();
+            int contagem = Integer.parseInt(selecionar.getString("contagem"));
+            if(contagem>0){
+                retorno = true;
+            }
+            conexao.fechar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Curriculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+        
     }
   
     

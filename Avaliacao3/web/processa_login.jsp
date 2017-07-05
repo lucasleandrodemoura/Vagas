@@ -1,4 +1,5 @@
 
+<%@page import="br.univates.progweb.models.Curriculo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,17 +14,20 @@
              
                 String cpf = request.getParameter("login");
                 String senha = request.getParameter("senha");
-
-              
-                    session.setAttribute("usuario", cpf);
-                    
-                   
-                    response.sendRedirect("editar_curriculo.jsp"); // não irá funcionar!!
-                    //out.print(session.getAttribute("usuario"));
-                    
                 
+                Curriculo x = new Curriculo();
+                x.setCpf(cpf);
+                x.setSenha(senha);
+                if(x.logar()){
+                    session.setAttribute("usuario", x.getCpf());
+                    session.setAttribute("nome", x.getNome());
+                    response.sendRedirect("editar_curriculo.jsp");
+                }else{
+                    response.sendRedirect("index.jsp");
+                }
 
             } catch (Exception e) {
+                out.print(e.getMessage());
             }
 
         %>

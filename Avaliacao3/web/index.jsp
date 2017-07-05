@@ -17,7 +17,7 @@
                 
     <%
       Conexao conecta = new Conexao();
-      ResultSet x = conecta.selecionar("SELECT idvagas,titulo,codigo_cidade,requisitos,salario FROM vagas WHERE aberto_ate <= now() and candidato_selecionado is null");
+      ResultSet x = conecta.selecionar("SELECT idvagas,titulo,codigo_cidade,requisitos,salario FROM vagas WHERE aberto_ate >= now() and candidato_selecionado is null");
       while(x.next()){
           Vagas vaga = new Vagas();
           vaga.setIdvagas(Integer.parseInt(x.getString("idvagas")));
