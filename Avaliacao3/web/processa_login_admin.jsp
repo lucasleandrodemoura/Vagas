@@ -1,4 +1,5 @@
 
+<%@page import="br.univates.progweb.models.Administradores"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,22 +10,29 @@
     <body>
 
         <%
+           
             try {
              
-                String login = request.getParameter("login");
+                String email = request.getParameter("login");
                 String senha = request.getParameter("senha");
-
-              
-                    session.setAttribute("usuario_admin", login);
-                    
-                   
-                    response.sendRedirect("admin_logado.jsp"); // não irá funcionar!!
-                    //out.print(session.getAttribute("usuario"));
-                    
                 
+                Administradores x = new Administradores();
+                x.setEmail(email);
+                x.setSenha(senha);
+                if(x.logar()){
+                    session.setAttribute("usuario_admin", x.getEmail());
+                    session.setAttribute("id_usuarios", x.getCodigoUsuario());
+                    session.setAttribute("logado_admin", 1);
+                    response.sendRedirect("admin_logado.jsp");
+                }else{
+                    response.sendRedirect("index.jsp");
+                }
 
             } catch (Exception e) {
+                out.print(e.getMessage());
             }
+
+        %>
 
         %>
 

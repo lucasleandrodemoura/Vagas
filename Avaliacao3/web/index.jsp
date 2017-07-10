@@ -13,7 +13,6 @@
 
 <%@ include file="includes/header.jsp" %>
 <%@ page import = "br.univates.progweb.models.Vagas" %>
-               
                 
     <%
       Conexao conecta = new Conexao();
@@ -25,7 +24,7 @@
           vaga.setRequisitos(x.getString("requisitos"));
           vaga.setSalario(Double.parseDouble(x.getString("salario")));
           
-          out.print(vaga.getQuadro(false));
+          out.print(vaga.getQuadro(3));
       }
       conecta.fechar();
             

@@ -15,8 +15,6 @@
     <%@ page import ="br.univates.progweb.models.Curriculo" %>
     
 
-                    
-                
     <form class="form-group" name="cadastrar_basico" method="post" action="curriculo/cadastrar">
                     <table id="dados" class="table table-bordered table-striped">
                         <thead>

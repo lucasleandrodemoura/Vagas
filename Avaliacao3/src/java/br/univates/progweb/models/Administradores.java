@@ -1,5 +1,11 @@
 package br.univates.progweb.models;
 
+import br.univates.progweb.util.Conexao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -53,6 +59,31 @@ public class Administradores{
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+    
+    
+    public boolean logar(){
+        
+        boolean retorno = false;
+        try {
+            Conexao conexao = new Conexao();
+            ResultSet selecionar = conexao.selecionar("select *  from administradores where email = '"+this.getEmail()+"' and senha = '"+this.getSenha()+"' and ativo = true");
+            
+            while(selecionar.next()){
+                this.setAtivo(true);
+                this.setCodigoUsuario(Integer.parseInt(selecionar.getString("codigo_usuario")));
+                this.setEmail(selecionar.getString("email"));
+                this.setNome(selecionar.getString("nome"));
+                this.setSenha(selecionar.getString("senha"));
+                
+                retorno = true;
+            }
+            conexao.fechar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Curriculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+        
     }
     
     

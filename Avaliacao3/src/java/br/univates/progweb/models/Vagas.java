@@ -43,8 +43,8 @@ public class Vagas{
         this.titulo = titulo;
     }
     
-    public String getQuadro(boolean logado){
-        if(logado==true){
+    public String getQuadro(int logado){
+        if(logado==1){
             return "<div class=\"col-sm-12 col-md-3\">\n" +
 "                        <div class=\"thumbnail\" id=\"vaga_"+this.getIdvagas()+"\">\n" +
 "                            <div class=\"caption\">\n" +
@@ -54,13 +54,23 @@ public class Vagas{
 "                            </div>\n" +
 "                        </div>\n" +
 "                    </div>     ";
-        }else{
-        return "<div class=\"col-sm-12 col-md-3\">\n" +
+        }else if(logado==2){
+            return "<div class=\"col-sm-12 col-md-3\">\n" +
 "                        <div class=\"thumbnail\" id=\"vaga_"+this.getIdvagas()+"\">\n" +
 "                            <div class=\"caption\">\n" +
 "                                <h3>"+this.getTitulo()+"</h3>\n" +
 "                                <p>"+this.getRequisitos()+"<br>Salário: R$ "+this.getSalario()+"</p>\n" +
 "                                <a href=\"editar_vaga.jsp?codigo="+this.getIdvagas()+"\" class=\"btn btn-default small\" role=\"button\" id=\"Link_Candidatar_"+this.getIdvagas()+"\">Saiba mais</a>\n" +
+"                            </div>\n" +
+"                        </div>\n" +
+"                    </div>     ";
+        }        
+        else{
+        return "<div class=\"col-sm-12 col-md-3\">\n" +
+"                        <div class=\"thumbnail\" id=\"vaga_"+this.getIdvagas()+"\">\n" +
+"                            <div class=\"caption\">\n" +
+"                                <h3>"+this.getTitulo()+"</h3>\n" +
+"                                <p>"+this.getRequisitos()+"<br>Salário: R$ "+this.getSalario()+"</p>\n" +
 "                            </div>\n" +
 "                        </div>\n" +
 "                    </div>     ";
