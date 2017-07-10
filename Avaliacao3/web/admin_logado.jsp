@@ -7,6 +7,9 @@
 
 
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="br.univates.progweb.util.Conexao"%>
+<%@page import="br.univates.progweb.models.Vagas"%>
 <%@page import="java.util.ArrayList"%>
 
 <%@page import="org.apache.catalina.session.StandardSession"%>
@@ -25,16 +28,24 @@
    <div class="conteudo">
                 <div class="row">
                     
-                    <div class="col-sm-12 col-md-4">
-                        <div class="thumbnail" id="vaga">
-                            <div class="caption">
-                                <h3>Técnico em Informática</h3>
-                                <p>Curso Técnico em Informática<br>Experiência: 2 anos<br>Salário: R$1.200,00<br>Cidade: Lajeado/RS</p>
-                                <a href="admin_cadastrar_vaga.jsp" class="btn btn-default small" role="button" id="Link_Candidatar1">Editar</a>
-                                <a href="admin_ver_candidatos.jsp" class="btn btn-default small" role="button" id="Link_Candidatar2">Ver candidatos</a>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    
+                    
+                    <%
+                        Conexao conecta = new Conexao();
+                        ResultSet x = conecta.selecionar("SELECT idvagas,titulo,codigo_cidade,requisitos,salario FROM vagas WHERE aberto_ate >= now() and candidato_selecionado is null");
+                        while(x.next()){
+                            Vagas vaga = new Vagas();
+                            vaga.setIdvagas(Integer.parseInt(x.getString("idvagas")));
+                            vaga.setTitulo(x.getString("titulo"));
+                            vaga.setRequisitos(x.getString("requisitos"));
+                            vaga.setSalario(Double.parseDouble(x.getString("salario")));
+
+                            out.print(vaga.getQuadro(4));
+                        }
+                        conecta.fechar();
+            
+                    %>
 
                     
                     

@@ -64,7 +64,20 @@ public class Vagas{
 "                            </div>\n" +
 "                        </div>\n" +
 "                    </div>     ";
-        }        
+        }
+        else if(logado==4){
+            return "<div class=\"col-sm-12 col-md-3\">\n" +
+"                        <div class=\"thumbnail\" id=\"vaga_"+this.getIdvagas()+"\">\n" +
+"                            <div class=\"caption\">\n" +
+"                                <h3>"+this.getTitulo()+"</h3>\n" +
+"                                <p>"+this.getRequisitos()+"<br>Salário: R$ "+this.getSalario()+"</p>\n" +
+"                                 <a href=\"admin_cadastrar_vaga.jsp\" class=\"btn btn-default small\" role=\"button\" id=\"Link_Candidatar1\">Editar</a>"+
+                                 "<a href=\"admin_ver_candidatos.jsp\" class=\"btn btn-default small\" role=\"button\" id=\"Link_Candidatar2\">Ver candidatos</a>"+
+"                            </div>\n" +
+"                        </div>\n" +
+"                    </div>     ";
+            
+        }
         else{
         return "<div class=\"col-sm-12 col-md-3\">\n" +
 "                        <div class=\"thumbnail\" id=\"vaga_"+this.getIdvagas()+"\">\n" +
