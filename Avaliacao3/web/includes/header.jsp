@@ -17,6 +17,25 @@
         <script src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/funcoes.js"></script>
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/includes/DataTables/datatables.css">
+        <script type="text/javascript" src="<%=request.getContextPath()%>/includes/DataTables/datatables.js"></script>
+        <script type="text/javascript">
+            
+            
+            <!-- Função javascript para chamar Srvlet de exclusão de registro -->
+            function excluirRegistro(codigo, nome) {
+                if (confirm('Confirmar exclusão?')) {
+                    window.location.href = "<%=request.getContextPath()%>/"+nome+"?cod=" + codigo;
+                } else {
+                    alert('Exclusão cancelada.');
+                }
+            }
+            
+            $(document).ready(function(){
+                $('#tableDinamic').DataTable();
+            });
+            
+        </script> 
     <body>
         <!-- Inicio da barra no topo !-->
         <nav class="navbar navbar-default navbar-fixed-top">

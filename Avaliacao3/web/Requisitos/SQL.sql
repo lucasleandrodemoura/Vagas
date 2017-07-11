@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.7
 -- Dumped by pg_dump version 9.5.7
 
--- Started on 2017-07-10 21:34:29 BRT
+-- Started on 2017-07-10 23:30:25 BRT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -644,6 +644,10 @@ SELECT pg_catalog.setval('candidatura_codigo_vaga_seq', 1, false);
 --
 
 COPY cargos (codigo_cargo, descricao) FROM stdin;
+1	Programador
+2	Técnico em informática
+3	Farmaceutico
+4	Frentista
 \.
 
 
@@ -653,7 +657,7 @@ COPY cargos (codigo_cargo, descricao) FROM stdin;
 -- Name: cargos_codigo_cargo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('cargos_codigo_cargo_seq', 1, false);
+SELECT pg_catalog.setval('cargos_codigo_cargo_seq', 6, true);
 
 
 --
@@ -674,6 +678,7 @@ COPY cargos_pretendidos (codigo_cargo, codigo_curriculo) FROM stdin;
 
 COPY cidades (codigo_cidade, nome_cidade, codigo_estado) FROM stdin;
 1	Estrela	1
+4	ateaettaetaetae	1
 \.
 
 
@@ -683,7 +688,7 @@ COPY cidades (codigo_cidade, nome_cidade, codigo_estado) FROM stdin;
 -- Name: cidades_codigo_cidade_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('cidades_codigo_cidade_seq', 3, true);
+SELECT pg_catalog.setval('cidades_codigo_cidade_seq', 4, true);
 
 
 --
@@ -1096,7 +1101,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2017-07-10 21:34:30 BRT
+-- Completed on 2017-07-10 23:30:25 BRT
 
 --
 -- PostgreSQL database dump complete

@@ -19,8 +19,22 @@
         <url-pattern>/incluirCidade</url-pattern>
     </servlet-mapping>
     
-    
-    
+     <servlet>
+        <servlet-name>incluirAdministrador</servlet-name>
+        <servlet-class>incluirAdministrador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incluirAdministrador</servlet-name>
+        <url-pattern>/incluirAdministrador</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>excluirAdministrador</servlet-name>
+        <servlet-class>excluirAdministrador</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>excluirAdministrador</servlet-name>
+        <url-pattern>/excluirAdministrador</url-pattern>
+    </servlet-mapping>
     
     <servlet>
         <servlet-name>excluirCidade</servlet-name>
