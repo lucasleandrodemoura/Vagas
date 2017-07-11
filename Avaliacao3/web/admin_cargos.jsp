@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                 <form name="formulario" method="post" action="incluirCargo">
-                    <table class="table table-bordered">
+                    <table id="table_completo" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Descrição:</th>
