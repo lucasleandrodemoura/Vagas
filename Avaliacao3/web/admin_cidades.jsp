@@ -44,20 +44,20 @@ if(session.getValue("logado_admin")==null){
                                     </select></td>
                             </tr>
                         </thead>
-                        <tfoot>
+                        
                             <tr>
                                 <td colspan="2">
                                  <input class="btn btn-primary" type="submit" value="Gravar">
                                  
                                 </td>
                             </tr>
-                        </tfoot>
+                        
                     </table>
                         </form>
                     
                     <h3>Cidades Cadastradas</h3>
                     
-                        <table id="candidatos" class="table table-bordered table-striped table-hover">
+                        <table id="table_completo" class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>Cidade</th>

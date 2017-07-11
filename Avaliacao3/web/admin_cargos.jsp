@@ -28,14 +28,14 @@
                             </tr>
                           
                         </thead>
-                        <tfoot>
+                        
                             <tr>
                                 <td colspan="2">
                                  <input class="btn btn-primary" type="submit" value="Gravar">
                                  
                                 </td>
                             </tr>
-                        </tfoot>
+                        
                     </table>
                         </form>
                     

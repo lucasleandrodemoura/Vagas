@@ -12,14 +12,7 @@
             </div>
         </div>
         
-        
- <!-- Inicio Rodape !-->
-        <nav class="navbar navbar-default navbar-fixed-bottom">
-                <div class="container">
-                    <p class="navbar-text right"><a href="admin_logado.jsp" title="Abrir área administrativa">Área Administrativa</a></p>
-                </div>
-        </nav>
-        <!-- Fim Rodape !-->
+ 
         
         <script>
             
@@ -42,7 +35,7 @@
                             'aTargets': [0]
                         } //disables sorting for column one
             ],
-                    'iDisplayLength': 50,
+                    'iDisplayLength': 10,
                     "sPaginationType": "full_numbers"
                    
                 });

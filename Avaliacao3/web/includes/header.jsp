@@ -13,15 +13,18 @@
     </head>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <!-- Customizações do framework front-end bootstra !-->
-    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+    
         <script src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/funcoes.js"></script>
         <script src="<%=request.getContextPath()%>/includes/icheck/icheck.min.js"></script>
         <link href="<%=request.getContextPath()%>/includes/icheck/flat/green.css" rel="stylesheet">
+        
+        
         <script src="<%=request.getContextPath()%>/includes/datatables/js/jquery.dataTables.js"></script>
         <script src="<%=request.getContextPath()%>/includes/datatables/tools/js/dataTables.tableTools.js"></script>
         <script src="<%=request.getContextPath()%>/includes/datatables/tools/js/jquery.dataTables.columnFilter.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/custom.css" />
         
         
         <script type="text/javascript">
@@ -43,26 +46,47 @@
         </script> 
     <body>
         <!-- Inicio da barra no topo !-->
+        
         <nav class="navbar navbar-default navbar-fixed-top">
-            <a class="navbar-brand" href="#" id="nav_title">Vagas&VC</a>
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Vagas & VC</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                <% 
             // Verificar se já foi efetuado login
             if ( session.getAttribute("usuario") == null && session.getAttribute("usuario_admin") == null ) {
                 %>
-        
-            <ul class="nav navbar-nav">
+                
+                
+                
+                
+       <ul class="nav navbar-nav">
                 
                 <li><a href="index.jsp" id="nav_home">Vagas</a></li>
                 <li><a href="cadastrar.jsp" title="Cadastre o seu currículo" id="nav_cadastrar">Cadastre-se</a></li>
+                
+                <li><a href="admin_logado.jsp" title="Abrir área administrativa">Área Administrativa</a></li>
             </ul>
-            
-            <form class="navbar-form navbar-right" method="post" action="processa_login.jsp">
+      <form class="navbar-form navbar-right" method="post" action="processa_login.jsp">
                 <div class="form-group">
                     <label>CPF</label> <input type="text" value="" name="login" required id="login" class="form-control small" placeholder="CPF">
                     <label>Senha:</label> <input type="password" value=""  name="senha" required id="senha" class="form-control small" placeholder="">
                 </div>
                 <button type="submit" class="btn btn-default">Meu CV</button>
             </form>
+      
+    
+        
+           
+            
+            
         
                <% 
             // Verificar se já foi efetuado login
@@ -93,6 +117,8 @@
          <% 
             }
                 %>
+                </div>
+                </div>
         <!-- Fim da barra no topo !-->
         </nav>
         
