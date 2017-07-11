@@ -14,9 +14,10 @@
     <%@ include file="includes/header.jsp" %>
    <div class="conteudo">
                 <div class="row">
+                    <div class="col-lg-12">
                     <h3>Visualizando todos os currículos</h3>
                     
-                        <table id="candidatos" class="table table-bordered table-striped table-hover">
+                        <table id="table_completo" class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>Nome:</th>
@@ -28,8 +29,22 @@
                                 </tr>
                             </thead>      
                             <tbody>
+                                <%
+            Conexao conecta = new Conexao();
+            ResultSet x = conecta.selecionar("select codigo_curso,nome_curso, "
+                    + "CASE "
+                    + "WHEN nivel = 1 THEN 'Médio' "
+                    + "WHEN nivel = 2 THEN 'Técnico' "
+                    + "WHEN nivel = 3 THEN 'Superior' "
+                    + "WHEN nivel = 4 THEN 'Pós-Graduação' "
+                    + "ELSE 'Não informado' END as nivel  "
+                    + "from cursos "
+                    + "order by nome_curso");
+            while(x.next()){
+                            
+                    %>
                                 <tr>
-                                    <td>Lucas Leandro de Moura</td>
+                                    <td><%=x.getString("nome_curso")%></td>
                                     <td>Lajeado/RS</td>
                                     <td>5199999999</td>
                                     <td>lucasleandrodemoura@gmail.com</td>
@@ -38,6 +53,10 @@
                                     
                                     </td>
                                 </tr>
+                                
+                    <% 
+                        }
+                    %>
                             </tbody>     
 
                             
@@ -45,6 +64,7 @@
                     
 
                 </div>  
+                    </div>
 
               </div>
         
