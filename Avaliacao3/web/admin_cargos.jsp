@@ -19,7 +19,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                 <form name="formulario" method="post" action="incluirCargo">
-                    <table id="table_completo" class="table table-bordered">
+                    
+                    <table  class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Descrição:</th>
@@ -40,12 +41,11 @@
                     
                     <h3>Cargos Cadastradas</h3>
                     
-                        <table id="candidatos" class="table table-bordered table-striped table-hover">
+                        <table id="table_completo" class="table table-bordered table-striped table-hover dataTable">
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    
-                                    
+                                 
                                     <th>Ações</th>
                                 </tr>
                             </thead>      

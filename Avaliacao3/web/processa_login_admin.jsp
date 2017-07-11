@@ -19,7 +19,9 @@
                 Administradores x = new Administradores();
                 x.setEmail(email);
                 x.setSenha(senha);
+                
                 if(x.logar()){
+                    System.out.println("Logado");
                     session.setAttribute("usuario_admin", x.getEmail());
                     session.setAttribute("id_usuarios", x.getCodigoUsuario());
                     session.setAttribute("logado_admin", 1);

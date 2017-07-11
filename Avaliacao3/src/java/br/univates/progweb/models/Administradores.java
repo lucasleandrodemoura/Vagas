@@ -68,7 +68,7 @@ public class Administradores{
         try {
             Conexao conexao = new Conexao();
             ResultSet selecionar = conexao.selecionar("select *  from administradores where email = '"+this.getEmail()+"' and senha = '"+this.getSenha()+"' and ativo = true");
-            
+            System.out.println("select *  from administradores where email = '"+this.getEmail()+"' and senha = '"+this.getSenha()+"' and ativo = true");
             while(selecionar.next()){
                 this.setAtivo(true);
                 this.setCodigoUsuario(Integer.parseInt(selecionar.getString("codigo_usuario")));

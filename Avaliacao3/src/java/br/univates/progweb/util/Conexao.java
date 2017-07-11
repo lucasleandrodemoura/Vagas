@@ -49,7 +49,7 @@ public class Conexao {
     }
      
     private void criarBanco(){
-        String sql = "CREATE TABLE administradores (\n" +
+        String sql = "CREATE TABLE IF NOT EXISTS IF NOT EXISTS administradores (\n" +
 "  codigo_usuario SERIAL,\n" +
 "  email varchar(45) NOT NULL UNIQUE,\n" +
 "  senha varchar(45) NOT NULL,\n" +
@@ -59,7 +59,7 @@ public class Conexao {
 ") ;\n" +
 "\n" +
 "\n" +
-"CREATE TABLE cargos (\n" +
+"CREATE TABLE IF NOT EXISTS IF NOT EXISTS cargos (\n" +
 "  codigo_cargo SERIAL,\n" +
 "  descricao varchar(255) NOT NULL,\n" +
 "  PRIMARY KEY (codigo_cargo)\n" +
@@ -67,7 +67,7 @@ public class Conexao {
 "\n" +
 "\n" +
 "\n" +
-"CREATE TABLE cursos (\n" +
+"CREATE TABLE IF NOT EXISTS IF NOT EXISTS cursos (\n" +
 "  codigo_curso SERIAL,\n" +
 "  nome_curso varchar(255) DEFAULT NULL,\n" +
 "  nivel integer DEFAULT NULL,\n" +
@@ -76,7 +76,7 @@ public class Conexao {
 "\n" +
 "\n" +
 "\n" +
-"CREATE TABLE estado (\n" +
+"CREATE TABLE IF NOT EXISTS IF NOT EXISTS estado (\n" +
 "  codigo_estado SERIAL,\n" +
 "  nome_estado varchar(45) DEFAULT NULL,\n" +
 "  sigla varchar(2) DEFAULT NULL,\n" +
@@ -85,7 +85,7 @@ public class Conexao {
 "\n" +
 "\n" +
 "\n" +
-"CREATE TABLE cidades (\n" +
+"CREATE TABLE IF NOT EXISTS IF NOT EXISTS cidades (\n" +
 "  codigo_cidade SERIAL,\n" +
 "  nome_cidade varchar(50) NOT NULL,\n" +
 "  codigo_estado INTEGER NOT NULL,\n" +
@@ -95,7 +95,7 @@ public class Conexao {
 "\n" +
 "\n" +
 "\n" +
-"CREATE TABLE curriculo (\n" +
+"CREATE TABLE IF NOT EXISTS curriculo (\n" +
 "  idcurriculo SERIAL,\n" +
 "  cidade_residencia INTEGER NOT NULL,\n" +
 "  pretencao_salarial float DEFAULT NULL,\n" +
@@ -117,7 +117,7 @@ public class Conexao {
 ") ;\n" +
 "\n" +
 "\n" +
-"CREATE TABLE cargos_pretendidos (\n" +
+"CREATE TABLE IF NOT EXISTS cargos_pretendidos (\n" +
 "  codigo_cargo INTEGER NOT NULL,\n" +
 "  codigo_curriculo INTEGER NOT NULL,\n" +
 "  PRIMARY KEY (codigo_cargo,codigo_curriculo),\n" +
@@ -127,7 +127,7 @@ public class Conexao {
 "\n" +
 "\n" +
 "\n" +
-"CREATE TABLE experiencia (\n" +
+"CREATE TABLE IF NOT EXISTS experiencia (\n" +
 "  codigo_experiencia SERIAL,\n" +
 "  nome_empresa varchar(255) NOT NULL,\n" +
 "  atividades_desempenhadas varchar(255) DEFAULT NULL,\n" +
@@ -142,14 +142,14 @@ public class Conexao {
 "\n" +
 "\n" +
 "\n" +
-"CREATE TABLE instituicoes (\n" +
+"CREATE TABLE IF NOT EXISTS instituicoes (\n" +
 "  codigo_instituicao SERIAL,\n" +
 "  nome varchar(255) NOT NULL,\n" +
 "  PRIMARY KEY (codigo_instituicao)\n" +
 ") ;\n" +
 "\n" +
 "\n" +
-"CREATE TABLE formacao (\n" +
+"CREATE TABLE IF NOT EXISTS formacao (\n" +
 "  codigo_formacao SERIAL,\n" +
 "  curso INTEGER NOT NULL,\n" +
 "  outros varchar(255) DEFAULT NULL,\n" +
@@ -167,7 +167,7 @@ public class Conexao {
 "\n" +
 "\n" +
 "\n" +
-"CREATE TABLE vagas (\n" +
+"CREATE TABLE IF NOT EXISTS vagas (\n" +
 "  idvagas serial,\n" +
 "  aberto_ate date NOT NULL,\n" +
 "  descricao varchar(255) NOT NULL,\n" +
@@ -184,7 +184,7 @@ public class Conexao {
 "\n" +
 "\n" +
 "\n" +
-"CREATE TABLE processo_seletivo (\n" +
+"CREATE TABLE IF NOT EXISTS processo_seletivo (\n" +
 "  codigo_vaga INTEGER NOT NULL,\n" +
 "  candidato_selecionado INTEGER NOT NULL,\n" +
 "  parecer varchar(45) DEFAULT NULL,\n" +
@@ -197,7 +197,7 @@ public class Conexao {
 "\n" +
 "\n" +
 "\n" +
-"CREATE TABLE candidatura (\n" +
+"CREATE TABLE IF NOT EXISTS candidatura (\n" +
 "  codigo_vaga SERIAL,\n" +
 "  codigo_candidato INTEGER NOT NULL,\n" +
 "  PRIMARY KEY (codigo_vaga,codigo_candidato),\n" +
