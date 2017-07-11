@@ -20,6 +20,8 @@
     </servlet-mapping>
     
     
+    
+    
     <servlet>
         <servlet-name>excluirCidade</servlet-name>
         <servlet-class>excluirCidade</servlet-class>
@@ -30,6 +32,26 @@
     </servlet-mapping>
     
     
+    
+    <servlet>
+        <servlet-name>excluirCargo</servlet-name>
+        <servlet-class>excluirCargo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>excluirCargo</servlet-name>
+        <url-pattern>/excluirCargo</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+        <servlet>
+        <servlet-name>incluirCargo</servlet-name>
+        <servlet-class>incluirCargo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incluirCargo</servlet-name>
+        <url-pattern>/incluirCargo</url-pattern>
+    </servlet-mapping>
     
     
     <session-config>
