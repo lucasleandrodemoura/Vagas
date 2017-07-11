@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>incluirVaga</servlet-name>
+        <servlet-class>incluirVaga</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incluirVaga</servlet-name>
+        <url-pattern>/incluirVaga</url-pattern>
+    </servlet-mapping>
+    
+    
+     <servlet>
+        <servlet-name>incluirCidade</servlet-name>
+        <servlet-class>incluirCidade</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incluirCidade</servlet-name>
+        <url-pattern>/incluirCidade</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>excluirCidade</servlet-name>
+        <servlet-class>excluirCidade</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>excluirCidade</servlet-name>
+        <url-pattern>/excluirCidade</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

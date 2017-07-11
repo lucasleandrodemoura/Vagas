@@ -16,7 +16,7 @@
  <!-- Inicio Rodape !-->
         <nav class="navbar navbar-default navbar-fixed-bottom">
                 <div class="container">
-                    <p class="navbar-text right"><a href="admin.jsp" title="Abrir área administrativa">Área Administrativa</a></p>
+                    <p class="navbar-text right"><a href="admin_logado.jsp" title="Abrir área administrativa">Área Administrativa</a></p>
                 </div>
         </nav>
         <!-- Fim Rodape !-->

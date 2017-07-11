@@ -25,7 +25,7 @@
                     session.setAttribute("logado_admin", 1);
                     response.sendRedirect("admin_logado.jsp");
                 }else{
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("admin.jsp");
                 }
 
             } catch (Exception e) {

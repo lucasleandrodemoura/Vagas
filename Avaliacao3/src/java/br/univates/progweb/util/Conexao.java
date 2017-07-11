@@ -175,11 +175,9 @@ public class Conexao {
 "  codigo_cidade INTEGER NOT NULL,\n" +
 "  salario float NOT NULL,\n" +
 "  titulo varchar(50) NOT NULL,\n" +
-"  cadastrado_por INTEGER NOT NULL,\n" +
 "  candidato_selecionado INTEGER DEFAULT NULL,\n" +
 "  PRIMARY KEY (idvagas),\n" +
 "  \n" +
-"  CONSTRAINT fk_vagas_administradores1 FOREIGN KEY (cadastrado_por) REFERENCES administradores (codigo_usuario) ON DELETE NO ACTION ON UPDATE NO ACTION,\n" +
 "  CONSTRAINT fk_vagas_cidades1 FOREIGN KEY (codigo_cidade) REFERENCES cidades (codigo_cidade) ON DELETE NO ACTION ON UPDATE NO ACTION,\n" +
 "  CONSTRAINT fk_vagas_curriculo1 FOREIGN KEY (candidato_selecionado) REFERENCES curriculo (idcurriculo) ON DELETE NO ACTION ON UPDATE NO ACTION\n" +
 ") ;\n" +

@@ -7,13 +7,21 @@
 
 
 
+<%@page import="br.univates.progweb.util.Conexao"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="org.apache.catalina.session.StandardSession"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
-
+<% 
+if(session.getValue("logado_admin")==null){
+    response.sendRedirect("admin.jsp");
+}
+%>
 
     <%@ include file="includes/header.jsp" %>
    <div class="conteudo">
                 <div class="row">
+                    <div class="col-lg-12">
+                        <form name="formulario" method="post" action="incluirCidade">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -23,20 +31,29 @@
                             <tr>
                                 <th>Estado:</th>
                                 <td><select class="form-control" required name="estado">
-                                        <option value="1">RS</option>
-                                        <option value="2">SC</option>
+             <%
+                        Conexao conecta = new Conexao();
+                        ResultSet x = conecta.selecionar("select codigo_estado,sigla from estado ORDER BY sigla");
+                        while(x.next()){
+                            
+                            out.print("<option value='"+x.getString("codigo_estado")+"'>"+x.getString("sigla")+"</option>");
+                        }
+                        conecta.fechar();
+            
+                    %>
                                     </select></td>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <td colspan="2">
-                                 <input class="btn btn-primary" type="submit" value="Atualizar">
+                                 <input class="btn btn-primary" type="submit" value="Gravar">
                                  
                                 </td>
                             </tr>
                         </tfoot>
                     </table>
+                        </form>
                     
                     <h3>Cidades Cadastradas</h3>
                     
@@ -49,15 +66,31 @@
                                 </tr>
                             </thead>      
                             <tbody>
-                                <tr>
-                                    <td>Estrela</td>
-                                    <td>RS</td>
+                                  <%
+                        conecta = new Conexao();
+                        x = conecta.selecionar("SELECT codigo_cidade,nome_cidade,sigla FROM cidades INNER JOIN estado ON cidades.codigo_estado = estado.codigo_estado ORDER BY nome_cidade");
+                        while(x.next()){
+                            
+                             %>
+                            
+                             
+                              <tr>
+                                    <td><%=x.getString("nome_cidade")%></td>
+                                    <td><%=x.getString("sigla")%></td>
                                     
                                     
-                                    <td><a href="#" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
-                                    <a href="#" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
+                                    <td><a href="excluirCidade?cod=<%=x.getString("codigo_cidade")%>" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                                    <a href="?cod=<%=x.getString("codigo_cidade")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
                                     </td>
                                 </tr>
+                             
+                             
+                            <%
+                        }
+                        conecta.fechar();
+            
+                    %>
+                               
                             </tbody>     
 
                             
@@ -65,7 +98,7 @@
                     
 
                 </div>  
-
+                </div>
               </div>
         
     <%@ include file="includes/footer.jsp" %>

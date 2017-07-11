@@ -7,16 +7,26 @@
 
 
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="br.univates.progweb.util.Conexao"%>
 <%@page import="org.apache.catalina.session.StandardSession"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
-
+ <%
+        
+        if(!session.getAttribute("logado_admin").equals(1)){
+            response.sendRedirect("admin_logado.jsp");
+        }
+        
+        %>
 
     <%@ include file="includes/header.jsp" %>
    
         <div class="conteudo">
+            
                 <div class="row">
+                    <div class="col-lg-12">
                     <h3>Cadastro de vagas</h3>
-                    <form class="form-group" name="cadastrar_basico" method="post" action="admin_logado.jsp">
+                    <form class="form-group" name="cadastrar_basico" method="post" action="incluirVaga">
                         <table id="vaga" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -40,7 +50,16 @@
                                     
                                     <select class="form-control small" required name="cidade">
                                         <option value=""></option>
-                                        <option value="1">Exemplo</option>
+                                        <%
+                        Conexao conecta = new Conexao();
+                        ResultSet x = conecta.selecionar("SELECT codigo_cidade,nome_cidade FROM cidades INNER JOIN estado ON cidades.codigo_estado = estado.codigo_estado ORDER BY nome_cidade");
+                        while(x.next()){
+                            
+                            out.print("<option value='"+x.getString("codigo_cidade")+"'>"+x.getString("nome_cidade")+"</option>");
+                        }
+                        conecta.fechar();
+            
+                    %>
                                     </select>
                                 </td>
                             </tr>
@@ -70,6 +89,7 @@
                 </div>  
 
               </div>
+            </div>
     <%@ include file="includes/footer.jsp" %>
         
        

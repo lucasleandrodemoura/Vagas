@@ -17,14 +17,12 @@
 
 
     <%@ include file="includes/header.jsp" %>
-    
-    <%
-        
-        if(!session.getAttribute("logado_admin").equals(1)){
-            response.sendRedirect("admin_logado.jsp");
-        }
-        
-        %>
+
+<% 
+if(session.getValue("logado_admin")==null){
+    response.sendRedirect("admin.jsp");
+}
+%>
    <div class="conteudo">
                 <div class="row">
                     
@@ -33,6 +31,7 @@
                     
                     <%
                         Conexao conecta = new Conexao();
+                        
                         ResultSet x = conecta.selecionar("SELECT idvagas,titulo,codigo_cidade,requisitos,salario FROM vagas WHERE aberto_ate >= now() and candidato_selecionado is null");
                         while(x.next()){
                             Vagas vaga = new Vagas();
