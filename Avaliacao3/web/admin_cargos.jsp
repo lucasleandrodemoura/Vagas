@@ -13,72 +13,54 @@
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
 
-    <%@ include file="includes/header.jsp" %>
-   
-        <div class="conteudo">
-                <div class="row">
-                    <div class="col-lg-12">
-                <form name="formulario" method="post" action="incluirCargo">
-                    
-                    <table  class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Descrição:</th>
-                                <td><input type="text" name="descricao" maxlength="50" required class="form-control"></td>
-                            </tr>
-                          
-                        </thead>
-                        
-                            <tr>
-                                <td colspan="2">
-                                 <input class="btn btn-primary" type="submit" value="Gravar">
-                                 
-                                </td>
-                            </tr>
-                        
-                    </table>
-                        </form>
-                    
-                    <h3>Cargos Cadastradas</h3>
-                    
-                        <table id="table_completo" class="table table-bordered table-striped table-hover dataTable">
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                 
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>      
-                            <tbody>
-                                <%
-                        Conexao conecta = new Conexao();
-                        ResultSet x = conecta.selecionar("SELECT codigo_cargo,descricao FROM cargos ORDER BY descricao");
-                        while(x.next()){
+<%@ include file="includes/header.jsp" %>
+
+<div class="conteudo">
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            
+
+            <div class="col-lg-12" align="right"><a class="btn btn-default" href="admin_cargos_maint.jsp">Novo</a></div>
+            
+            <h3>Cargos</h3>
+            <table id="table_completo" class="table table-bordered table-striped table-hover dataTable">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>      
+                <tbody>
+                    <%
+            Conexao conecta = new Conexao();
+            ResultSet x = conecta.selecionar("SELECT codigo_cargo,descricao FROM cargos ORDER BY descricao");
+            while(x.next()){
                             
-                             %>
-                                
-                                <tr>
-                                    
-                                    <td><%=x.getString("descricao")%></td>
-                                    
-                                    
-                                    <td><a href="excluirCargo?cod=<%=x.getString("codigo_cargo")%>" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
-                                    <a href="?cod=<%=x.getString("codigo_cargo")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
-                                    </td>
-                                </tr>
-                                
-                                <% 
-                                }
-                                %>
-                            </tbody>     
+                    %>
 
-                            
-                        </table>
-                    </div>
+                    <tr>
 
-                </div>  
+                        <td><%=x.getString("descricao")%></td>
 
-              </div>
-    <%@ include file="includes/footer.jsp" %>
-        
-       
+
+                        <td><a href="excluirCargo?cod=<%=x.getString("codigo_cargo")%>" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                            <a href="admin_cargos_maint.jsp?cod=<%=x.getString("codigo_cargo")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
+                        </td>
+                    </tr>
+
+                    <% 
+                    }
+                    %>
+                </tbody>     
+
+
+            </table>
+        </div>
+
+    </div>  
+
+</div>
+<%@ include file="includes/footer.jsp" %>
+

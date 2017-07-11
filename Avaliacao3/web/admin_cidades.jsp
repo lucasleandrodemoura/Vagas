@@ -20,42 +20,9 @@ if(session.getValue("logado_admin")==null){
     <%@ include file="includes/header.jsp" %>
    <div class="conteudo">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <form name="formulario" method="post" action="incluirCidade">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Nome:</th>
-                                <td><input type="text" name="nome" maxlength="50" required class="form-control"></td>
-                            </tr>
-                            <tr>
-                                <th>Estado:</th>
-                                <td><select class="form-control" required name="estado">
-             <%
-                        Conexao conecta = new Conexao();
-                        ResultSet x = conecta.selecionar("select codigo_estado,sigla from estado ORDER BY sigla");
-                        while(x.next()){
-                            
-                            out.print("<option value='"+x.getString("codigo_estado")+"'>"+x.getString("sigla")+"</option>");
-                        }
-                        conecta.fechar();
-            
-                    %>
-                                    </select></td>
-                            </tr>
-                        </thead>
-                        
-                            <tr>
-                                <td colspan="2">
-                                 <input class="btn btn-primary" type="submit" value="Gravar">
-                                 
-                                </td>
-                            </tr>
-                        
-                    </table>
-                        </form>
-                    
-                    <h3>Cidades Cadastradas</h3>
+                    <div class="col-lg-12">    
+                    <div class="col-lg-12" align="right"><a class="btn btn-default" href="admin_cidades_maint.jsp">Novo</a></div>
+                    <h3>Cidades</h3>
                     
                         <table id="table_completo" class="table table-bordered table-striped table-hover">
                             <thead>
@@ -67,8 +34,8 @@ if(session.getValue("logado_admin")==null){
                             </thead>      
                             <tbody>
                                   <%
-                        conecta = new Conexao();
-                        x = conecta.selecionar("SELECT codigo_cidade,nome_cidade,sigla FROM cidades INNER JOIN estado ON cidades.codigo_estado = estado.codigo_estado ORDER BY nome_cidade");
+                        Conexao conecta = new Conexao();
+                        ResultSet x = conecta.selecionar("SELECT codigo_cidade,nome_cidade,sigla FROM cidades INNER JOIN estado ON cidades.codigo_estado = estado.codigo_estado ORDER BY nome_cidade");
                         while(x.next()){
                             
                              %>
@@ -80,7 +47,7 @@ if(session.getValue("logado_admin")==null){
                                     
                                     
                                     <td><a href="excluirCidade?cod=<%=x.getString("codigo_cidade")%>" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
-                                    <a href="?cod=<%=x.getString("codigo_cidade")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
+                                    <a href="admin_cidades_maint.jsp?cod=<%=x.getString("codigo_cidade")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
                                     </td>
                                 </tr>
                              

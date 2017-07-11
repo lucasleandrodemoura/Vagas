@@ -7,6 +7,8 @@
 
 
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="br.univates.progweb.util.Conexao"%>
 <%@page import="org.apache.catalina.session.StandardSession"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
@@ -15,55 +17,51 @@
    
         <div class="conteudo">
                 <div class="row">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Nome:</th>
-                                <td><input type="text" name="descricao" maxlength="50" required class="form-control"></td>
-                            </tr>
-                            
-                             <tr>
-                                <th>Nível</th>
-                                <td><select class="form-control" name="nivel" required>
-                                        <option value="1">Superior</option>
-                                        <option value="2">Técnico</option>
-                                        <option value="3">Extensão</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            
-                        </thead>
+                    <div class="col-lg-12">
                         
-                            <tr>
-                                <td colspan="2">
-                                 <input class="btn btn-primary" type="submit" value="Atualizar">
-                                 
-                                </td>
-                            </tr>
-                        
-                    </table>
+                    <div class="col-lg-12" align="right"><a class="btn btn-default" href="admin_cursos_maint.jsp">Novo</a></div>
                     
-                    <h3>Cursos Cadastradas</h3>
+                    <h3>Cursos</h3>
                     
                         <table id="table_completo" class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>Cursos</th>
                                     <th>Nível</th>
-                                    
                                     <th>Ações</th>
                                 </tr>
                             </thead>      
                             <tbody>
-                                <tr>
-                                    <td>Sistemas de Informação</td>
-                                    <td>Superior</td>
-                                    
-                                    
-                                    <td><a href="#" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
-                                    <a href="#" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
-                                    </td>
-                                </tr>
+                                <%
+            Conexao conecta = new Conexao();
+            ResultSet x = conecta.selecionar("select codigo_curso,nome_curso, "
+                    + "CASE "
+                    + "WHEN nivel = 1 THEN 'Médio' "
+                    + "WHEN nivel = 2 THEN 'Técnico' "
+                    + "WHEN nivel = 3 THEN 'Superior' "
+                    + "WHEN nivel = 4 THEN 'Pós-Graduação' "
+                    + "ELSE 'Não informado' END as nivel  "
+                    + "from cursos "
+                    + "order by nome_curso");
+            while(x.next()){
+                            
+                    %>
+
+                    <tr>
+
+                        <td><%=x.getString("nome_curso")%></td>
+                        <td><%=x.getString("nivel")%></td>
+
+
+                        <td><a href="excluirCurso?cod=<%=x.getString("codigo_curso")%>" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                            <a href="admin_cursos_maint.jsp?cod=<%=x.getString("codigo_curso")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
+                        </td>
+                    </tr>
+
+                    <% 
+                    }
+                    %>
+                                
                             </tbody>     
 
                             
@@ -71,6 +69,7 @@
                     
 
                 </div>  
+                    </div>
 
               </div>
     <%@ include file="includes/footer.jsp" %>
