@@ -51,6 +51,42 @@ public class Curriculo {
     
     private String foto;
 
+    public Curriculo() {
+    }
+
+    
+    public Curriculo(Integer idcurriculo) {
+        try {
+            Conexao conexao = new Conexao();
+            ResultSet selecionar = conexao.selecionar("select *  from curriculo where idcurriculo = "+idcurriculo);
+            
+            
+            while(selecionar.next()){
+                System.out.println("Achou");
+                this.setBairro(selecionar.getString("bairro"));
+                this.setCelular(selecionar.getString("celular"));
+                this.setCpf(selecionar.getString("cpf"));
+                this.setEmail(selecionar.getString("email"));
+                this.setEndereco(selecionar.getString("endereco"));
+                this.setEstadoCivil(Integer.parseInt(selecionar.getString("estado_civil")));
+                this.setIdcurriculo(Integer.parseInt(selecionar.getString("idcurriculo")));
+                this.setNome(selecionar.getString("nome"));
+                this.setObservacoes(selecionar.getString("observacao"));
+                this.setPdf(selecionar.getString("pdf"));
+                this.setPretencaoSalarial(Float.parseFloat(selecionar.getString("pretencao_salarial")));
+                this.setSenha(selecionar.getString("senha"));
+                this.setTelefone(selecionar.getString("telefone"));
+                
+                
+            }
+            conexao.fechar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Curriculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+
     public String getFoto() {
         return foto;
     }
@@ -234,7 +270,7 @@ public class Curriculo {
                 this.setEmail(selecionar.getString("email"));
                 this.setEndereco(selecionar.getString("endereco"));
                 this.setEstadoCivil(Integer.parseInt(selecionar.getString("estado_civil")));
-                this.setIdcurriculo(Integer.parseInt(selecionar.getString("id_curriculo")));
+                this.setIdcurriculo(Integer.parseInt(selecionar.getString("idcurriculo")));
                 this.setNome(selecionar.getString("nome"));
                 this.setObservacoes(selecionar.getString("observacao"));
                 this.setPdf(selecionar.getString("pdf"));

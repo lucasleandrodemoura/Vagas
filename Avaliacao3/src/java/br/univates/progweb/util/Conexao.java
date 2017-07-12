@@ -34,7 +34,7 @@ public class Conexao {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection("jdbc:postgresql://"+host+":"+port+"/"+base, user, senha);
             st = conn.createStatement();
-            this.criarBanco();
+            //this.criarBanco();
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
@@ -205,7 +205,7 @@ public class Conexao {
 "  CONSTRAINT fk_vagas_has_curriculo_vagas1 FOREIGN KEY (codigo_vaga) REFERENCES vagas (idvagas) ON DELETE NO ACTION ON UPDATE NO ACTION\n" +
 ") ;";
 
-        this.incluir(sql);
+        boolean retorno = this.incluir(sql);
     }
     
     public void fechar(){

@@ -71,15 +71,14 @@
                                     <select class="form-control small" required name="cidade">
                                         <option value=""></option>
                                         <%
-                        Conexao conecta = new Conexao();
-                        ResultSet x = conecta.selecionar("SELECT codigo_cidade,nome_cidade,sigla FROM cidades INNER JOIN estado ON cidades.codigo_estado = estado.codigo_estado ORDER BY sigla,nome_cidade");
-                        while(x.next()){
-                            
-                            out.print("<option value='"+x.getString("codigo_cidade")+"'>"+x.getString("nome_cidade")+"/"+x.getString("sigla")+"</option>");
-                        }
-                        conecta.fechar();
-            
-                    %>
+                                            Conexao conecta = new Conexao();
+                                            ResultSet x = conecta.selecionar("SELECT codigo_cidade,nome_cidade,sigla FROM cidades INNER JOIN estado ON cidades.codigo_estado = estado.codigo_estado ORDER BY sigla,nome_cidade");
+                                            while(x.next()){
+
+                                                out.print("<option value='"+x.getString("codigo_cidade")+"'>"+x.getString("nome_cidade")+"/"+x.getString("sigla")+"</option>");
+                                            }
+                                            conecta.fechar();
+                                        %>
                                     </select>
                                     
                                 </td>
