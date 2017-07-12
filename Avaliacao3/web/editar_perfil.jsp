@@ -4,32 +4,18 @@
     Author     : lucasmoura
 --%>
 
-
-
-<%@page import="java.util.ArrayList"%>
-<%@page import="br.univates.progweb.Cargos"%>
-<%@page import="br.univates.progweb.Experiencia"%>
-<%@page import="br.univates.progweb.Estado"%>
 <%@page import="org.apache.catalina.session.StandardSession"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
 
-    <%@ include file="includes/header.jsp" %>
-    <%@ page import ="br.univates.progweb.Curriculo" %>
-    
+<%@ include file="includes/header.jsp" %>
 
-                    
-                
-    <%
-        //Lista todas as vagas
-       
-       Curriculo candidato = new Curriculo();
-       candidato.setBairro("Industrias");
-            
-      
-            
-    %>
-                            
+
+<%
+    
+    session.getAttribute("id_curriculo");
+    
+%>
 
     <div class="col-lg-12">
                 <ul class="nav nav-tabs" role="tablist">
