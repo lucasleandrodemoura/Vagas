@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.7
 -- Dumped by pg_dump version 9.5.7
 
--- Started on 2017-07-10 23:30:25 BRT
+-- Started on 2017-07-11 21:55:41 BRT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -606,6 +606,8 @@ ALTER TABLE ONLY vagas ALTER COLUMN idvagas SET DEFAULT nextval('vagas_idvagas_s
 
 COPY administradores (codigo_usuario, email, senha, nome, ativo) FROM stdin;
 3	lucasleandrodemoura@gmail.com	1234	Lucas Leandro de Moura	t
+4	aetaet@taeeat.com	aetaetaet	taaeteataet	t
+5	taetaetae@teaeattae.com	atetae	aettaetaetae	t
 \.
 
 
@@ -615,7 +617,7 @@ COPY administradores (codigo_usuario, email, senha, nome, ativo) FROM stdin;
 -- Name: administradores_codigo_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('administradores_codigo_usuario_seq', 3, true);
+SELECT pg_catalog.setval('administradores_codigo_usuario_seq', 5, true);
 
 
 --
@@ -648,6 +650,7 @@ COPY cargos (codigo_cargo, descricao) FROM stdin;
 2	Técnico em informática
 3	Farmaceutico
 4	Frentista
+7	aettaetae
 \.
 
 
@@ -657,7 +660,7 @@ COPY cargos (codigo_cargo, descricao) FROM stdin;
 -- Name: cargos_codigo_cargo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('cargos_codigo_cargo_seq', 6, true);
+SELECT pg_catalog.setval('cargos_codigo_cargo_seq', 7, true);
 
 
 --
@@ -679,6 +682,7 @@ COPY cargos_pretendidos (codigo_cargo, codigo_curriculo) FROM stdin;
 COPY cidades (codigo_cidade, nome_cidade, codigo_estado) FROM stdin;
 1	Estrela	1
 4	ateaettaetaetae	1
+5	testetaeeattaetaetae	3
 \.
 
 
@@ -688,7 +692,7 @@ COPY cidades (codigo_cidade, nome_cidade, codigo_estado) FROM stdin;
 -- Name: cidades_codigo_cidade_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('cidades_codigo_cidade_seq', 4, true);
+SELECT pg_catalog.setval('cidades_codigo_cidade_seq', 5, true);
 
 
 --
@@ -707,7 +711,7 @@ COPY curriculo (idcurriculo, cidade_residencia, pretencao_salarial, nome, estado
 -- Name: curriculo_idcurriculo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('curriculo_idcurriculo_seq', 1, false);
+SELECT pg_catalog.setval('curriculo_idcurriculo_seq', 3, true);
 
 
 --
@@ -717,6 +721,8 @@ SELECT pg_catalog.setval('curriculo_idcurriculo_seq', 1, false);
 --
 
 COPY cursos (codigo_curso, nome_curso, nivel) FROM stdin;
+1	taeteataetae	1
+2	taeeattaeaet	3
 \.
 
 
@@ -726,7 +732,7 @@ COPY cursos (codigo_curso, nome_curso, nivel) FROM stdin;
 -- Name: cursos_codigo_curso_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('cursos_codigo_curso_seq', 1, false);
+SELECT pg_catalog.setval('cursos_codigo_curso_seq', 2, true);
 
 
 --
@@ -796,6 +802,9 @@ SELECT pg_catalog.setval('formacao_codigo_formacao_seq', 1, false);
 --
 
 COPY instituicoes (codigo_instituicao, nome) FROM stdin;
+1	aetaettaetae
+2	Univates
+3	EEEPE
 \.
 
 
@@ -805,7 +814,7 @@ COPY instituicoes (codigo_instituicao, nome) FROM stdin;
 -- Name: instituicoes_codigo_instituicao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('instituicoes_codigo_instituicao_seq', 1, false);
+SELECT pg_catalog.setval('instituicoes_codigo_instituicao_seq', 3, true);
 
 
 --
@@ -825,6 +834,7 @@ COPY processo_seletivo (codigo_vaga, candidato_selecionado, parecer, recrutador)
 --
 
 COPY vagas (idvagas, aberto_ate, descricao, requisitos, codigo_cidade, salario, titulo, candidato_selecionado) FROM stdin;
+1	2017-07-19	eatlkaetlçkaeçlt\r\naeteatçkaeçlkae\r\naetkjaeçlea\r\naetçkjaetçlkae	taetaetaeeattae\r\nte\r\naet\r\naetçkaeçlkeatlçkaetçl\r\n\r\n\r\naetlaekçlaektlçaet\r\naetçkaeçlkaeçlkçl	1	2222	taeeateateat	\N
 \.
 
 
@@ -834,7 +844,7 @@ COPY vagas (idvagas, aberto_ate, descricao, requisitos, codigo_cidade, salario, 
 -- Name: vagas_idvagas_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('vagas_idvagas_seq', 1, false);
+SELECT pg_catalog.setval('vagas_idvagas_seq', 1, true);
 
 
 --
@@ -1101,7 +1111,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2017-07-10 23:30:25 BRT
+-- Completed on 2017-07-11 21:55:42 BRT
 
 --
 -- PostgreSQL database dump complete

@@ -7,7 +7,12 @@ package br.univates.progweb.models;
  */
 
 
+import br.univates.progweb.util.Conexao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -32,6 +37,17 @@ public class Vagas{
 
     public Vagas(Integer idvagas) {
         this.idvagas = idvagas;
+        try {
+            Conexao conexao = new Conexao();
+            ResultSet selecionar = conexao.selecionar("select * from vagas where idvagas = "+idvagas);
+            
+            while(selecionar.next()){
+                this.setTitulo(selecionar.getString("titulo"));
+            }
+            conexao.fechar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Vagas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public Vagas(Integer idvagas, Date abertoAte, String descricao, String requisitos, float salario, String titulo) {
@@ -71,8 +87,8 @@ public class Vagas{
 "                            <div class=\"caption\">\n" +
 "                                <h3>"+this.getTitulo()+"</h3>\n" +
 "                                <p>"+this.getRequisitos()+"<br>Salário: R$ "+this.getSalario()+"</p>\n" +
-"                                 <a href=\"admin_cadastrar_vaga.jsp\" class=\"btn btn-default small\" role=\"button\" id=\"Link_Candidatar1\">Editar</a>"+
-                                 "<a href=\"admin_ver_candidatos.jsp\" class=\"btn btn-default small\" role=\"button\" id=\"Link_Candidatar2\">Ver candidatos</a>"+
+"                                 <a href=\"admin_cadastrar_vaga.jsp?cod="+this.getIdvagas()+"\" class=\"btn btn-default small\" role=\"button\" id=\"Link_Candidatar1\">Editar</a>"+
+                                 "<a href=\"admin_ver_candidatos.jsp?cod="+this.getIdvagas()+"\" class=\"btn btn-default small\" role=\"button\" id=\"Link_Candidatar2\">Ver candidatos</a>"+
 "                            </div>\n" +
 "                        </div>\n" +
 "                    </div>     ";

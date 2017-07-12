@@ -227,6 +227,7 @@ public class Curriculo {
             ResultSet selecionar = conexao.selecionar("select *  from curriculo where cpf = '"+this.getCpf()+"' and senha = '"+this.getSenha()+"'");
             
             while(selecionar.next()){
+                retorno = true;
                 this.setBairro(selecionar.getString("bairro"));
                 this.setCelular(selecionar.getString("celular"));
                 this.setCpf(selecionar.getString("cpf"));
@@ -241,7 +242,7 @@ public class Curriculo {
                 this.setSenha(selecionar.getString("senha"));
                 this.setTelefone(selecionar.getString("telefone"));
                 
-                retorno = true;
+                
             }
             conexao.fechar();
         } catch (SQLException ex) {

@@ -18,7 +18,9 @@
                 Curriculo x = new Curriculo();
                 x.setCpf(cpf);
                 x.setSenha(senha);
+                
                 if(x.logar()){
+                    
                     session.setAttribute("usuario", x.getCpf());
                     session.setAttribute("id_curriculo", x.getIdcurriculo());
                     session.setAttribute("email", x.getEmail());                    

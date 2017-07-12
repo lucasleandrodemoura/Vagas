@@ -9,6 +9,46 @@
         <url-pattern>/incluirVaga</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>incluirCurriculo</servlet-name>
+        <servlet-class>incluirCurriculo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incluirCurriculo</servlet-name>
+        <url-pattern>/incluirCurriculo</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
+    
+     <servlet>
+        <servlet-name>incluirInstituicao</servlet-name>
+        <servlet-class>incluirInstituicao</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incluirInstituicao</servlet-name>
+        <url-pattern>/incluirInstituicao</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>incluirCurso</servlet-name>
+        <servlet-class>incluirCurso</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incluirCurso</servlet-name>
+        <url-pattern>/incluirCurso</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>excluirCurso</servlet-name>
+        <servlet-class>excluirCurso</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>excluirCurso</servlet-name>
+        <url-pattern>/excluirCurso</url-pattern>
+    </servlet-mapping>
+    
     
      <servlet>
         <servlet-name>incluirCidade</servlet-name>

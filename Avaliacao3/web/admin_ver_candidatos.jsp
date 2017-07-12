@@ -7,6 +7,9 @@
 
 
 
+<%@page import="br.univates.progweb.models.Vagas"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="br.univates.progweb.util.Conexao"%>
 <%@page import="org.apache.catalina.session.StandardSession"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
@@ -15,7 +18,13 @@
    
         <div class="conteudo">
                 <div class="row">
-                    <h3>Visualizar candidatos para a vaga de <b>Técnico em Informática</b></h3>
+                    <div class="col-lg-12">
+                        <div class="col-lg-12" align="right"><a class="btn btn-default" href="admin_logado.jsp">Voltar</a></div>
+                    <% 
+                        Vagas InfoVAGA = new Vagas(Integer.parseInt(request.getParameter("cod")));
+                        
+                    %>
+                    <h3>Visualizar candidatos para a vaga de <b><%=InfoVAGA.getTitulo()%></b></h3>
                     
                         <table id="candidatos" class="table table-bordered table-striped table-hover">
                             <thead>
@@ -29,17 +38,27 @@
                                 </tr>
                             </thead>      
                             <tbody>
+                                <%
+            Conexao conecta = new Conexao();
+            ResultSet x = conecta.selecionar("SELECT idcurriculo,nome,nome_cidade,sigla,telefone,email,foto FROM curriculo INNER JOIN cidades ON cidades.codigo_cidade = curriculo.cidade_residencia INNER JOIN estado ON cidades.codigo_estado = estado.codigo_estado INNER JOIN candidatura ON candidatura.codigo_candidato = curriculo.idcurriculo WHERE candidatura.codigo_vaga = "+request.getParameter("cod")+" ORDER BY nome");
+            while(x.next()){
+                            
+                    %>
                                 <tr>
-                                    <td>Lucas Leandro de Moura</td>
-                                    <td>Lajeado/RS</td>
-                                    <td>5199999999</td>
-                                    <td>lucasleandrodemoura@gmail.com</td>
-                                    <td><img src="fotos/exemplo.jpg" class="img-thumbnail img-responsive" width="80px"></td>
-                                    <td><a href="editar_perfil.jsp" target="_blank" class="btn btn-default">Abrir</a>
-                                    <a href="admin_registrar_parecer.jsp" class="btn btn-default">Parecer</a>
-                                    <a href="javascript:alert('Candidato contratado')" class="btn btn-default" title="Contratar este candidato"><i class="glyphicon glyphicon glyphicon-thumbs-up"></i></a>
+                                    <td><%=x.getString("nome")%></td>
+                                    <td><%=x.getString("nome_cidade")%>/<%=x.getString("sigla")%></td>
+                                    <td><%=x.getString("telefone")%></td>
+                                    <td><%=x.getString("email")%></td>
+                                    <td><img src="<%=request.getContextPath()%>/fotos/<%=x.getString("foto")%>" class="img-thumbnail img-responsive" width="80px"></td>
+                                    <td><a href="editar_perfil.jsp?cod=<%=x.getString("idcurriculo")%>&visualizar=1" target="_blank" class="btn btn-default">Abrir</a>
+                                    
                                     </td>
                                 </tr>
+                                
+                    <% 
+                        }
+                    %>
+                            
                             </tbody>     
 
                             
@@ -47,6 +66,7 @@
                     
 
                 </div>  
+                    </div>  
 
               </div>
     <%@ include file="includes/footer.jsp" %>

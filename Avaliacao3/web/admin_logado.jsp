@@ -26,7 +26,7 @@ if(session.getValue("logado_admin")==null){
    <div class="conteudo">
                 <div class="row">
                     
-                    
+                          <div class="col-sm-12 ">
                     
                     
                     <%
@@ -57,6 +57,8 @@ if(session.getValue("logado_admin")==null){
                     </div>
 
                 </div>  
+                    
+                    </div>  
 
               </div>
         

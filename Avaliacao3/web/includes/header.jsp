@@ -76,7 +76,7 @@
             </ul>
       <form class="navbar-form navbar-right" method="post" action="processa_login.jsp">
                 <div class="form-group">
-                    <label>CPF</label> <input type="text" value="" name="login" required id="login" class="form-control small" placeholder="CPF">
+                    <label>CPF</label> <input type="text" value="" name="login" required id="login" class="form-control small cpf" placeholder="CPF">
                     <label>Senha:</label> <input type="password" value=""  name="senha" required id="senha" class="form-control small" placeholder="">
                 </div>
                 <button type="submit" class="btn btn-default">Meu CV</button>

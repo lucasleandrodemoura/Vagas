@@ -7,6 +7,8 @@
 
 
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="br.univates.progweb.util.Conexao"%>
 <%@page import="org.apache.catalina.session.StandardSession"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
@@ -31,25 +33,17 @@
                             <tbody>
                                 <%
             Conexao conecta = new Conexao();
-            ResultSet x = conecta.selecionar("select codigo_curso,nome_curso, "
-                    + "CASE "
-                    + "WHEN nivel = 1 THEN 'Médio' "
-                    + "WHEN nivel = 2 THEN 'Técnico' "
-                    + "WHEN nivel = 3 THEN 'Superior' "
-                    + "WHEN nivel = 4 THEN 'Pós-Graduação' "
-                    + "ELSE 'Não informado' END as nivel  "
-                    + "from cursos "
-                    + "order by nome_curso");
+            ResultSet x = conecta.selecionar("SELECT idcurriculo,nome,nome_cidade,sigla,telefone,email,foto FROM curriculo INNER JOIN cidades ON cidades.codigo_cidade = curriculo.cidade_residencia INNER JOIN estado ON cidades.codigo_estado = estado.codigo_estado ORDER BY nome");
             while(x.next()){
                             
                     %>
                                 <tr>
-                                    <td><%=x.getString("nome_curso")%></td>
-                                    <td>Lajeado/RS</td>
-                                    <td>5199999999</td>
-                                    <td>lucasleandrodemoura@gmail.com</td>
-                                    <td><img src="fotos/exemplo.jpg" class="img-thumbnail img-responsive" width="80px"></td>
-                                    <td><a href="editar_perfil.jsp" target="_blank" class="btn btn-default">Abrir</a>
+                                    <td><%=x.getString("nome")%></td>
+                                    <td><%=x.getString("nome_cidade")%>/<%=x.getString("sigla")%></td>
+                                    <td><%=x.getString("telefone")%></td>
+                                    <td><%=x.getString("email")%></td>
+                                    <td><img src="<%=request.getContextPath()%>/fotos/<%=x.getString("foto")%>" class="img-thumbnail img-responsive" width="80px"></td>
+                                    <td><a href="editar_perfil.jsp?cod=<%=x.getString("idcurriculo")%>&visualizar=1" target="_blank" class="btn btn-default">Abrir</a>
                                     
                                     </td>
                                 </tr>

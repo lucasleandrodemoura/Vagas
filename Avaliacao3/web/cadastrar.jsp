@@ -7,6 +7,8 @@
 
 
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="br.univates.progweb.util.Conexao"%>
 <%@page import="org.apache.catalina.session.StandardSession"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
@@ -14,8 +16,9 @@
     <%@ include file="includes/header.jsp" %>
     <%@ page import ="br.univates.progweb.models.Curriculo" %>
     
-
-    <form class="form-group" name="cadastrar_basico" method="post" action="curriculo/cadastrar">
+    <div class="col-lg-12">
+    <h3>Cadastre-se</h3>
+    <form class="form-group" name="cadastrar_basico" method="post" action="incluirCurriculo">
                     <table id="dados" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -25,15 +28,16 @@
                             
                             <tr>
                                 <th>CPF: </th>
-                                <td><input class="form-control small" onblur="validaCPF(this);" type="text" maxlength="11" required name="cpf"></td>
-                                <th>Senha: </th>
-                                <td><input class="form-control small" type="password" required name="senha"></td>
+                                <td><input class="form-control small cpf" onbluir="validaCPF(this);" type="text" maxlength="11" required name="cpf"></td>
+                                <th>E-mail: </th>
+                                <td><input class="form-control small" type="email" required name="email"></td>
+                                
                             </tr>
                            
                             
                             <tr>
-                                <th>E-mail: </th>
-                                <td colspan="3"><input class="form-control small" type="email" required name="email"></td>
+                                <th>Senha: </th>
+                                <td colspan="3"><input class="form-control small" type="password" required name="senha"></td>
                             </tr>
                             
                             
@@ -63,7 +67,22 @@
                             
                               <tr>
                                 <th>Cidade: </th>
-                                <td colspan="3"><input class="form-control small" type="text" required name="cidade"></td>
+                                <td colspan="3">
+                                    <select class="form-control small" required name="cidade">
+                                        <option value=""></option>
+                                        <%
+                        Conexao conecta = new Conexao();
+                        ResultSet x = conecta.selecionar("SELECT codigo_cidade,nome_cidade,sigla FROM cidades INNER JOIN estado ON cidades.codigo_estado = estado.codigo_estado ORDER BY sigla,nome_cidade");
+                        while(x.next()){
+                            
+                            out.print("<option value='"+x.getString("codigo_cidade")+"'>"+x.getString("nome_cidade")+"/"+x.getString("sigla")+"</option>");
+                        }
+                        conecta.fechar();
+            
+                    %>
+                                    </select>
+                                    
+                                </td>
                                 
                             </tr>
                             
@@ -87,7 +106,7 @@
                     </table>
                 </form>
         
-        
+        </div>
         <%@ include file="includes/footer.jsp" %>
         
        

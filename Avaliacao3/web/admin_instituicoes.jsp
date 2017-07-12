@@ -7,6 +7,8 @@
 
 
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="br.univates.progweb.util.Conexao"%>
 <%@page import="org.apache.catalina.session.StandardSession"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 
@@ -14,70 +16,48 @@
     <%@ include file="includes/header.jsp" %>
    <div class="conteudo">
                 <div class="row">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Nome:</th>
-                                <td><input type="text" name="nome" maxlength="50" required class="form-control"></td>
-                            </tr>
-                            
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <td colspan="2">
-                                 <input class="btn btn-primary" type="submit" value="Atualizar">
-                                 
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    
-                    <h3>Universidades cadastradas</h3>
-                    
-                        <table id="candidatos" class="table table-bordered table-striped table-hover">
+                    <div class="col-lg-12">
+                        <div class="col-lg-12" align="right"><a class="btn btn-default" href="admin_instituicoes_maint.jsp">Novo</a></div>                
+                    <h3>Instituiçao de ensino</h3>
+                        
+                        <table id="table_completo" class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th>Codigo</th>
                                     <th>Nome</th>
-                                    
                                     
                                     <th>Ações</th>
                                 </tr>
                             </thead>      
                             <tbody>
-                                <tr>
-                                    <td>Univates</td>
-                                    
-                                    
-                                    <td><a href="#" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
-                                    <a href="#" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <td>EEEPE</td>
-                                    
-                                    
-                                    <td><a href="#" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
-                                    <a href="#" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
-                                    </td>
-                                </tr>
-                                
-                                
-                                <tr>
-                                    <td>Unisc</td>
-                                    
-                                    
-                                    <td><a href="#" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
-                                    <a href="#" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
-                                    </td>
-                                </tr>
+                                 <%
+            Conexao conecta = new Conexao();
+            ResultSet x = conecta.selecionar("select * from instituicoes");
+            while(x.next()){
+                            
+                    %>
+
+                    <tr>
+                        <td><%=x.getString("codigo_instituicao")%></td>
+                        <td><%=x.getString("nome")%></td>
+                        
+
+
+                        <td><a href="excluirInstituicao?cod=<%=x.getString("codigo_instituicao")%>" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                            <a href="admin_instituicao_maint.jsp?cod=<%=x.getString("codigo_instituicao")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
+                        </td>
+                    </tr>
+
+                    <% 
+                    }
+                    %>
                             </tbody>     
 
                             
                         </table>
                     
 
-                </div>  
+                </div>  </div>  
 
               </div>
         
