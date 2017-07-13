@@ -61,6 +61,7 @@ public class Vagas{
     
     public String getQuadro(int logado){
         if(logado==1){
+            
             return "<div class=\"col-sm-12 col-md-3\">\n" +
 "                        <div class=\"thumbnail\" id=\"vaga_"+this.getIdvagas()+"\">\n" +
 "                            <div class=\"caption\">\n" +

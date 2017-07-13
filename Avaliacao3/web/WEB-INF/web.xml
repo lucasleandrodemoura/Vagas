@@ -10,6 +10,16 @@
     </servlet-mapping>
     
     
+     <servlet>
+        <servlet-name>candidatarVaga</servlet-name>
+        <servlet-class>candidatarVaga</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>candidatarVaga</servlet-name>
+        <url-pattern>/candidatarVaga</url-pattern>
+    </servlet-mapping>
+    
+    
        <servlet>
         <servlet-name>incluiExperiencia</servlet-name>
         <servlet-class>incluiExperiencia</servlet-class>

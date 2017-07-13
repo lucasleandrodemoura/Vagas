@@ -1,5 +1,7 @@
-function candidatar(componente) {
-    alert("Candidatura realizada com sucesso!");
+function candidatar(codigo,candidato) {
+    if(confirm("Voce deseja se canditar a esta vaga?")){
+        location.href = "candidatarVaga?codigo_vaga="+codigo+"&candidato="+candidato;
+    }
 }
 
 function excluir(codigo,retorno,tabela,key){
