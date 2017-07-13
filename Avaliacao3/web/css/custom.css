@@ -15,6 +15,10 @@ body {
     width: 100%;
 }
 
+input[name=btn_ok]{
+    width: 100px;
+}
+
 
 .nav-default {
     background-color: #f3f3ef;

@@ -32,40 +32,73 @@ if(session.getValue("logado")==null){
     
     
 %>
-
-    <div class="col-lg-12">
-        <form method="post" action="incluiFormacao?codigo_experiencia=<%=request.getParameter("codigo_experiencia")%>&id_curriculo=<%=session.getAttribute("id_curriculo").toString()%>">
+<div class="col-lg-12">    
+            <ol class="breadcrumb bg-info">
+                <li><a href="editar_perfil.jsp">Dados básicos</a></li>
+                <li><a href="editar_experiencias.jsp">Experiências</a></li>
+                <li class="active">Formação</li>
+            </ol>
+    
+        <form method="post" action="incluiFormacao?codigo_formacao=<%=request.getParameter("codigo_formacao")%>&id_curriculo=<%=session.getAttribute("id_curriculo").toString()%>">
             
             <h3>Formação</h3>
             <table id="dados" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>Nome da empresa:</th>
-                                <td colspan="3"><input class="form-control small" type="text" value="" required name="nome_empresa"></td>
+                                <th>Curso: *</th>
+                                <td colspan="3">
+                                    <select class="form-control small" required name="curso">
+                                        <option value=""></option>
+                                        <%
+                                            Conexao conecta = new Conexao();
+                                            ResultSet x = conecta.selecionar("select codigo_curso,nome_curso from cursos ORDER BY nome_curso");
+                                            while(x.next()){
+                                                
+                                                out.print("<option value='"+x.getString("codigo_curso")+"'>"+x.getString("nome_curso")+"</option>");
+                                            }
+                                            conecta.fechar();
+                                        %>
+                                    </select></td>
                             </tr>
                             
+                            
+                            
                             <tr>
-                                <th>Inicio </th>
-                                <td><input class="form-control small cpf" value="" type="date" required name="data_de"></td>
-                                <th>Termino: </th>
-                                <td><input class="form-control small" type="date" value="" name="data_ate"></td>
+                                <th>Outros: </th>
+                                <td><input class="form-control small" value="" type="text" name="outros"></td>
+                                <th>Concluído: *</th>
+                                <td>
+                                    <select class="form-control small" required name="concluido">
+                                        <option value=""></option>
+                                        <option value="1">Sim</option>
+                                        <option value="0">Não</option>
+                                    </select>
+                                
+                                </td>
                                 
                             </tr>
                            
                             
                             
+                            <tr>
+                                <th>Inicio *: </th>
+                                <td><input class="form-control small" value="" type="date" name="inicio"></td>
+                                <th>Fim/Prev: *</th>
+                                <td><input class="form-control small" value="" type="date" name="fim">                                </td>
+                                
+                            </tr>
                             
                               <tr>
-                                <th>Último cargo: </th>
+                                <th>Instituição: *</th>
                                 <td colspan="3">
-                                    <select class="form-control small" required name="cidade">
+                                    <select class="form-control small" required name="instituicao">
                                         <option value=""></option>
                                         <%
-                                            Conexao conecta = new Conexao();
-                                            ResultSet x = conecta.selecionar("SELECT codigo_cargo,descricao FROM cargos ORDER BY descricao");
-                                            while(x.next()){
+                                            conecta = new Conexao();
+                                            ResultSet g = conecta.selecionar("select codigo_instituicao,nome from instituicoes order by nome");
+                                            while(g.next()){
                                                 
-                                                out.print("<option value='"+x.getString("codigo_cargo")+"'>"+x.getString("descricao")+"</option>");
+                                                out.print("<option value='"+g.getString("codigo_instituicao")+"'>"+x.getString("nome")+"</option>");
                                             }
                                             conecta.fechar();
                                         %>
@@ -74,12 +107,6 @@ if(session.getValue("logado")==null){
                                 </td>
                                 
                             </tr>
-                            
-                             <tr>
-                                <th>Atividades desempenhadas: </th>
-                                <td colspan="3"><textarea name="atividades_desempenhadas" required class="form-control small"></textarea></td>
-                            </tr>
-                         
                             
                         </thead>
                         <tfoot>
@@ -91,28 +118,41 @@ if(session.getValue("logado")==null){
                         </tfoot>
                         
                     </table>
+                                    
+        </form>
                       
+                                    
+                                    
+                                    
             <table class="table table-bordered table-striped table-hover" id="table_completo">
                 <thead>
                     <tr>
-                        <th>Nome da empresa</th>
-                        <th>Ultimo cargo</th>
+                        <th>Curso</th>
+                        <th>Instituição</th>
+                        <th>Concluído</th>
                         <th>Inicio</th>
                         <th>Fim</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                     <%
-                      String s = "select nome_empresa, ultimo_cargo_ocupado, data_de, data_ate, codigo_experiencia from experiencia where codigo_curriculo = "+session.getAttribute("id_curriculo").toString();
+                      String s = "select cursos.nome_curso as curso,instituicoes.nome as universidade,CASE WHEN concluido = TRUE THEN 'Sim' ELSE 'Não' END as concluido,to_char(inicio, 'DD/MM/YYYY') as inicio,to_char(fim, 'DD/MM/YYYY') as fim,codigo_formacao from formacao INNER JOIN cursos ON cursos.codigo_curso = formacao.curso INNER JOIN instituicoes ON formacao.codigo_instituicao = instituicoes.codigo_instituicao WHERE codigo_curriculo = "+session.getAttribute("id_curriculo").toString();
                       Conexao conecExperiencias = new Conexao();
                       ResultSet t = conecExperiencias.selecionar(s);
                       while(t.next()){
                           
-                       %>
+                     %>
                     <tr>
-                        <td><%=t.getString("nome_empresa")%></td>
-                        <td><%=t.getString("ultimo_cargo_ocupado")%></td>
-                        <td><%=t.getString("data_de")%></td>
-                        <td><%=t.getString("data_ate")%></td>
+                        <td><%=t.getString("curso")%></td>
+                        <td><%=t.getString("universidade")%></td>
+                        <td><%=t.getString("concluido")%></td>
+                        <td><%=t.getString("inicio")%></td>
+                        <td><%=t.getString("fim")%></td>
+                        <td><a 
+                                href="javascript:excluir(<%=t.getString("codigo_formacao")%>,'editar_formacao','formacao','codigo_formacao');" 
+                                class="btn btn-default">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a></td>
                     </tr>   
                     <%   
                       }
@@ -124,12 +164,30 @@ if(session.getValue("logado")==null){
                                     
             
             
-        </form>
+        
                                     <div class="row">
-                                        <div class="col-lg-6" style="text-align: right"><a name="btn_next" href="editar_perfil.jsp" class="btn btn-warning">Voltar</a></div>
-                                        <div class="col-lg-6"><a name="btn_next" href="editar_formacao.jsp" class="btn btn-primary">Proximo</a></div>
+                                        <div class="col-lg-6" style="text-align: right"><a name="btn_next" href="editar_experiencias.jsp" class="btn btn-warning">Voltar</a></div>
+                                        <div class="col-lg-6"><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Concluir</button></div>
                                     </div>
     </div>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Aviso</h4>
+        </div>
+        <div class="modal-body">
+            Seu currículo foi atualizado com sucesso!
+        </div>
+    
+      <div class="modal-footer">
+          <a name="btn_next" href="javascript:ConcluirCurriculo();" class="btn btn-primary">Fechar</a>
+      </div>
+        </div>
+  </div>
+</div>
+                    
+                    
 <%
     }
 %>

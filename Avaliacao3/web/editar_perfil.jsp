@@ -32,8 +32,12 @@ if(session.getValue("logado")==null){
     
     
 %>
-
-    <div class="col-lg-12">
+    
+<div class="col-lg-12">
+            <ol class="breadcrumb bg-info">
+                <li class="active">Dados básicos</li>
+            </ol>
+    
         <form method="post" action="editarPerfil?id_curriculo=<%=session.getAttribute("id_curriculo").toString()%>">
             <h3>Dados básicos</h3>
             <table id="dados" class="table table-bordered table-striped">
@@ -147,12 +151,6 @@ if(session.getValue("logado")==null){
                                 <th>Celular: </th>
                                 <td><input class="form-control small" type="tel" value="<%=candidato.getCelular()%>"  name="celular"></td>
                             </tr>
-                            <tr>
-                                <th>Foto: </th>
-                                <td colspan="3"><input class="form-control small" value="<%=candidato.getFoto()%>" type="file"  name="foto"></td>
-                                
-                            </tr>
-                         
                             
                         </thead>
                         <tfoot>

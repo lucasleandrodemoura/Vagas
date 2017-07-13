@@ -8,6 +8,15 @@ function excluir(codigo,retorno,tabela,key){
     }
 }
 
+/**
+ * Redireciona para a tela principal
+ * @returns {undefined}
+ */
+function ConcluirCurriculo(){
+    
+    location.href = "editar_curriculo.jsp";
+}
+
 function validaCPF(strCPF) {
     strCPF = strCPF.value;
     var Soma;

@@ -110,8 +110,6 @@ public class Conexao {
 "  email varchar(50) DEFAULT NULL,\n" +
 "  senha varchar(50) DEFAULT NULL,\n" +
 "  observacoes varchar(255) DEFAULT NULL,\n" +
-"  pdf varchar(50) DEFAULT NULL,\n" +
-"  foto varchar(50) DEFAULT NULL,\n" +
 "  PRIMARY KEY (idcurriculo),\n" +
 "  CONSTRAINT fk_curriculo_cidades1 FOREIGN KEY (cidade_residencia) REFERENCES cidades (codigo_cidade) ON DELETE NO ACTION ON UPDATE NO ACTION\n" +
 ") ;\n" +

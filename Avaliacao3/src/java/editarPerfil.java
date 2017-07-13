@@ -18,6 +18,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import br.univates.progweb.util.Conexao;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.Iterator;
+import java.util.List;
 import org.apache.catalina.session.StandardSession;
 import sun.security.pkcs11.wrapper.Functions;
 
@@ -49,9 +54,7 @@ public class editarPerfil extends HttpServlet {
         String sql = "UPDATE public.curriculo\n" +
 "   SET cidade_residencia="+cidade+", pretencao_salarial="+pretensao_salarial+", nome='"+nome+"', \n" +
 "       estado_civil="+estadoCivil+", data_nascimento='"+dataNascimento+"', cpf='"+cpf+"', endereco='"+endereco+"', bairro='"+bairro+"', \n" +
-"       telefone='"+telefone+"', celular='"+celular+"', email='"+email+"', senha='"+senha+"', observacoes='"+observacoes+"', \n" +
-"       foto='"+foto+"'\n " +
-" WHERE idcurriculo = "+id_curriculo+";";
+"       telefone='"+telefone+"', celular='"+celular+"', email='"+email+"', senha='"+senha+"', observacoes='"+observacoes+"' WHERE idcurriculo = "+id_curriculo+";";
        
         
         
@@ -59,6 +62,7 @@ public class editarPerfil extends HttpServlet {
             Conexao x = new Conexao();
             if(x.incluir(sql)){
                 response.getWriter().println("<script>alert('Cadastrado com sucesso')</script>");
+                
                 response.sendRedirect("editar_experiencias.jsp");
                 
             }else{

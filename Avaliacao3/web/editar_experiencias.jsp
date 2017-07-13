@@ -22,16 +22,12 @@ if(session.getValue("logado")==null){
 }else {
 %>
 
-<%
+<div class="col-lg-12">
+    <ol class="breadcrumb bg-info">
+                <li><a href="editar_perfil.jsp">Dados básicos</a></li>
+                <li class="active">Experiências</li>
+            </ol>
     
-    
-    Curriculo candidato = new Curriculo(Integer.parseInt(session.getAttribute("id_curriculo").toString()));
-    
-    
-    
-%>
-
-    <div class="col-lg-12">
         
         <form method="post" action="incluiExperiencia?codigo_experiencia=<%=request.getParameter("codigo_experiencia")%>&id_curriculo=<%=session.getAttribute("id_curriculo").toString()%>">
             <h3>Experiencias</h3>
@@ -50,9 +46,6 @@ if(session.getValue("logado")==null){
                                 
                             </tr>
                            
-                            
-                            
-                            
                               <tr>
                                 <th>Ultimo cargo: </th>
                                 <td colspan="3">
@@ -101,7 +94,7 @@ if(session.getValue("logado")==null){
                     </tr>
                 </thead>
                     <%
-                      String s = "select nome_empresa, cargos.descricao as ultimo_cargo_ocupado, data_de, data_ate, codigo_experiencia from experiencia INNER JOIN cargos ON cargos.codigo_cargo = experiencia.ultimo_cargo_ocupado where codigo_curriculo = "+session.getAttribute("id_curriculo").toString();
+                      String s = "select nome_empresa, cargos.descricao as ultimo_cargo_ocupado, to_char(data_de, 'DD/MM/YYYY') as data_de, to_char(data_ate, 'DD/MM/YYYY') as data_ate, codigo_experiencia from experiencia INNER JOIN cargos ON cargos.codigo_cargo = experiencia.ultimo_cargo_ocupado where codigo_curriculo = "+session.getAttribute("id_curriculo").toString();
                       Conexao conecExperiencias = new Conexao();
                       ResultSet t = conecExperiencias.selecionar(s);
                       while(t.next()){

@@ -12,7 +12,7 @@
 
 
     <%@ include file="includes/header.jsp" %>
-   
+    <div class="col-lg-12">
     <b><h3>Login da Área administrativa</h3></b>
                 <form class="form-group" name="login" method="post" action="processa_login_admin.jsp">
                     <table id="dados" width="50%" align="center" class="table table-bordered table-striped">
@@ -44,7 +44,7 @@
                         
                     </table>
                 </form>
-        
+        </div>
     <%@ include file="includes/footer.jsp" %>
         
        

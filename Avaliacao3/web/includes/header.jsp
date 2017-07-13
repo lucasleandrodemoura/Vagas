@@ -19,7 +19,7 @@
         <script type="text/javascript" src="<%=request.getContextPath()%>/js/funcoes.js"></script>
         <script src="<%=request.getContextPath()%>/includes/icheck/icheck.min.js"></script>
         <link href="<%=request.getContextPath()%>/includes/icheck/flat/green.css" rel="stylesheet">
-        
+        <link rel="shortcut icon" href="<%=request.getContextPath()%>/includes/icone.png">
         
         <script src="<%=request.getContextPath()%>/includes/datatables/js/jquery.dataTables.js"></script>
         <script src="<%=request.getContextPath()%>/includes/datatables/tools/js/dataTables.tableTools.js"></script>
