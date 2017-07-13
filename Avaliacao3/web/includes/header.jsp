@@ -125,6 +125,6 @@
               <!-- Inicio pagina de conteudo !-->
         <div class="col-xs-12">
             <div class="block-grid">
-                <dic class="conteudo">
+                <div class="conteudo">
                 <div class="row">
                     
