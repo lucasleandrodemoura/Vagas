@@ -9,6 +9,25 @@
         <url-pattern>/incluirVaga</url-pattern>
     </servlet-mapping>
     
+    
+       <servlet>
+        <servlet-name>incluiExperiencia</servlet-name>
+        <servlet-class>incluiExperiencia</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incluiExperiencia</servlet-name>
+        <url-pattern>/incluiExperiencia</url-pattern>
+    </servlet-mapping>
+    
+     <servlet>
+        <servlet-name>editarPerfil</servlet-name>
+        <servlet-class>editarPerfil</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editarPerfil</servlet-name>
+        <url-pattern>/editarPerfil</url-pattern>
+    </servlet-mapping>
+    
     <servlet>
         <servlet-name>incluirCurriculo</servlet-name>
         <servlet-class>incluirCurriculo</servlet-class>
@@ -16,6 +35,16 @@
     <servlet-mapping>
         <servlet-name>incluirCurriculo</servlet-name>
         <url-pattern>/incluirCurriculo</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
+        <servlet-name>excluir</servlet-name>
+        <servlet-class>excluir</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>excluir</servlet-name>
+        <url-pattern>/excluir</url-pattern>
     </servlet-mapping>
     
     

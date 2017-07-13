@@ -43,7 +43,7 @@
                         
 
 
-                        <td><a href="excluirInstituicao?cod=<%=x.getString("codigo_instituicao")%>" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                        <td><a href="javascript:excluir(<%=x.getString("codigo_instituicao")%>,'admin_instituicoes','instituicoes','codigo_instituicao');" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
                             <a href="admin_instituicao_maint.jsp?cod=<%=x.getString("codigo_instituicao")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
                         </td>
                     </tr>

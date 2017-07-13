@@ -23,7 +23,7 @@ public class Curriculo {
   
     private Integer idcurriculo;
     
-    private float pretencaoSalarial;
+    private double pretencaoSalarial;
     
     private String nome;
     
@@ -50,32 +50,43 @@ public class Curriculo {
     private String pdf;
     
     private String foto;
+    
+    private int cidade_residencia;
+    
 
     public Curriculo() {
     }
+
+  
 
     
     public Curriculo(Integer idcurriculo) {
         try {
             Conexao conexao = new Conexao();
-            ResultSet selecionar = conexao.selecionar("select *  from curriculo where idcurriculo = "+idcurriculo);
+            ResultSet selecionar = conexao.selecionar("select *  from curriculo where idcurriculo = 4");
             
             
             while(selecionar.next()){
-                System.out.println("Achou");
+                
+                
                 this.setBairro(selecionar.getString("bairro"));
                 this.setCelular(selecionar.getString("celular"));
+                this.setTelefone(selecionar.getString("telefone"));
+                this.setCidade_residencia(selecionar.getInt("cidade_residencia"));
                 this.setCpf(selecionar.getString("cpf"));
                 this.setEmail(selecionar.getString("email"));
+                this.setDataNascimento(selecionar.getDate("data_nascimento"));
                 this.setEndereco(selecionar.getString("endereco"));
-                this.setEstadoCivil(Integer.parseInt(selecionar.getString("estado_civil")));
-                this.setIdcurriculo(Integer.parseInt(selecionar.getString("idcurriculo")));
+                this.setEstadoCivil(selecionar.getInt("estado_civil"));
+                this.setFoto(selecionar.getString("foto"));
+                this.setIdcurriculo(selecionar.getInt("idcurriculo"));
                 this.setNome(selecionar.getString("nome"));
-                this.setObservacoes(selecionar.getString("observacao"));
-                this.setPdf(selecionar.getString("pdf"));
-                this.setPretencaoSalarial(Float.parseFloat(selecionar.getString("pretencao_salarial")));
+                this.setObservacoes(selecionar.getString("observacoes"));
+                this.setPretencaoSalarial(selecionar.getDouble("pretencao_salarial"));
                 this.setSenha(selecionar.getString("senha"));
-                this.setTelefone(selecionar.getString("telefone"));
+                
+                
+                
                 
                 
             }
@@ -85,7 +96,15 @@ public class Curriculo {
         }
     }
     
-    
+      public int getCidade_residencia() {
+        return cidade_residencia;
+    }
+
+    public void setCidade_residencia(int cidade_residencia) {
+        
+        System.out.println(cidade_residencia);
+        this.cidade_residencia = cidade_residencia;
+    }
 
     public String getFoto() {
         return foto;
@@ -105,11 +124,11 @@ public class Curriculo {
         this.idcurriculo = idcurriculo;
     }
 
-    public float getPretencaoSalarial() {
+    public double getPretencaoSalarial() {
         return pretencaoSalarial;
     }
 
-    public void setPretencaoSalarial(float pretencaoSalarial) {
+    public void setPretencaoSalarial(double pretencaoSalarial) {
         this.pretencaoSalarial = pretencaoSalarial;
     }
 

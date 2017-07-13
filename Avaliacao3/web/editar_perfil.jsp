@@ -4,6 +4,9 @@
     Author     : lucasmoura
 --%>
 
+<%@page import="java.util.logging.Logger"%>
+<%@page import="java.util.logging.Level"%>
+<%@page import="java.sql.SQLException"%>
 <%@page import="br.univates.progweb.util.Conexao"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="br.univates.progweb.util.Conexao"%>
@@ -16,10 +19,13 @@
 
 
 <%@ include file="includes/header.jsp" %>
-
+<% 
+if(session.getValue("logado")==null){
+    response.sendRedirect("index.jsp");
+}else {
+%>
 
 <%
-    
     
     Curriculo candidato = new Curriculo(Integer.parseInt(session.getAttribute("id_curriculo").toString()));
     
@@ -28,7 +34,7 @@
 %>
 
     <div class="col-lg-12">
-        <form method="post" action="editarPerfil">
+        <form method="post" action="editarPerfil?id_curriculo=<%=session.getAttribute("id_curriculo").toString()%>">
             <h3>Dados básicos</h3>
             <table id="dados" class="table table-bordered table-striped">
                         <thead>
@@ -42,6 +48,14 @@
                                 <td><input class="form-control small cpf" value="<%=candidato.getCpf()%>" type="text" maxlength="11" required name="cpf"></td>
                                 <th>E-mail: </th>
                                 <td><input class="form-control small" type="email" value="<%=candidato.getEmail()%>" required name="email"></td>
+                                
+                            </tr>
+                            
+                            <tr>
+                                <th>Pretensao Salarial: </th>
+                                <td><input class="form-control small cpf" value="<%=candidato.getPretencaoSalarial()%>" type="text" required name="pretensao_salarial"></td>
+                                <th></th>
+                                <td></td>
                                 
                             </tr>
                            
@@ -102,14 +116,22 @@
                               <tr>
                                 <th>Cidade: </th>
                                 <td colspan="3">
+                                    
                                     <select class="form-control small" required name="cidade">
                                         <option value=""></option>
                                         <%
                                             Conexao conecta = new Conexao();
+                                            int cidade_candidato = candidato.getCidade_residencia();
+                                                
                                             ResultSet x = conecta.selecionar("SELECT codigo_cidade,nome_cidade,sigla FROM cidades INNER JOIN estado ON cidades.codigo_estado = estado.codigo_estado ORDER BY sigla,nome_cidade");
                                             while(x.next()){
                                                 
-                                                out.print("<option value='"+x.getString("codigo_cidade")+"'>"+x.getString("nome_cidade")+"/"+x.getString("sigla")+"</option>");
+                                            
+                                                String select = "";
+                                                if(cidade_candidato==Integer.parseInt(x.getString("codigo_cidade"))){
+                                                    select = "selected";
+                                                }
+                                                out.print("<option value='"+x.getString("codigo_cidade")+"' "+select+">"+x.getString("nome_cidade")+"/"+x.getString("sigla")+"</option>");
                                             }
                                             conecta.fechar();
                                         %>
@@ -125,13 +147,18 @@
                                 <th>Celular: </th>
                                 <td><input class="form-control small" type="tel" value="<%=candidato.getCelular()%>"  name="celular"></td>
                             </tr>
+                            <tr>
+                                <th>Foto: </th>
+                                <td colspan="3"><input class="form-control small" value="<%=candidato.getFoto()%>" type="file"  name="foto"></td>
+                                
+                            </tr>
                          
                             
                         </thead>
                         <tfoot>
                             <tr>
                                 <td colspan="4">
-                                    <input name="btn_ok" type="submit" value="Atualizar dados básicos" class="btn btn-primary">
+                                    <input name="btn_ok" type="submit" value="Proximo" class="btn btn-primary">
                                 </td>
                             </tr>
                         </tfoot>
@@ -141,7 +168,7 @@
             
         </form>
     </div>
-        
+                                <% } %>
         <%@ include file="includes/footer.jsp" %>
         
        

@@ -229,6 +229,7 @@ public class Conexao {
             
             
         } catch (SQLException ex) {
+            System.out.print(ex.getMessage());
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }

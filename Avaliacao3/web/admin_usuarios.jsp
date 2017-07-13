@@ -44,7 +44,7 @@
                                     <td><%=x.getString("nome")%></td>
                                     <td><%=x.getString("email")%></td>
                                     
-                                    <td><a href="javascript:javascript:excluirRegistro(<%=x.getString("codigo_usuario")%>,'ExcluirAdministrador');" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                                    <td><a href="javascript:excluir(<%=x.getString("codigo_usuario")%>,'admin_usuarios','administradores','codigo_usuario');" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
                                         <a href="?cod=<%=x.getString("codigo_usuario")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
                                     </td>
                                 </tr>

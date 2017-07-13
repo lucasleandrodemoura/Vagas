@@ -46,7 +46,7 @@ if(session.getValue("logado_admin")==null){
                                     <td><%=x.getString("sigla")%></td>
                                     
                                     
-                                    <td><a href="excluirCidade?cod=<%=x.getString("codigo_cidade")%>" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                                    <td><a href="javascript:excluir(<%=x.getString("codigo_cidade")%>,'admin_cidades','cidades','codigo_cidade');" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
                                     <a href="admin_cidades_maint.jsp?cod=<%=x.getString("codigo_cidade")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
                                     </td>
                                 </tr>

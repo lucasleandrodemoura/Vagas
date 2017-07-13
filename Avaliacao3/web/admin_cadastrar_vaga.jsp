@@ -76,7 +76,10 @@
                                 </thead>    
                                 <tfoot>
                                  <tr>
-                                     <td colspan="2"><input type="submit" class="btn btn-primary" name="btn_cadastrar" value="Cadastrar"></td>
+                                     <td colspan="2">
+                                         
+                                         <input type="submit" class="btn btn-primary" name="btn_cadastrar" value="Cadastrar">
+                                     </td>
                                     
                                 </tr>
                                 

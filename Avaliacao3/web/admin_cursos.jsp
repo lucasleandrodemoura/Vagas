@@ -53,7 +53,7 @@
                         <td><%=x.getString("nivel")%></td>
 
 
-                        <td><a href="excluirCurso?cod=<%=x.getString("codigo_curso")%>" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                        <td><a href="javascript:excluir(<%=x.getString("codigo_curso")%>,'admin_cursos','cursos','codigo_curso');" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
                             <a href="admin_cursos_maint.jsp?cod=<%=x.getString("codigo_curso")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
                         </td>
                     </tr>

@@ -15,8 +15,8 @@
     <!-- Customizações do framework front-end bootstra !-->
     
         <script src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/funcoes.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/js/funcoes.js"></script>
         <script src="<%=request.getContextPath()%>/includes/icheck/icheck.min.js"></script>
         <link href="<%=request.getContextPath()%>/includes/icheck/flat/green.css" rel="stylesheet">
         

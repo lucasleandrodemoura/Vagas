@@ -45,7 +45,7 @@
                         <td><%=x.getString("descricao")%></td>
 
 
-                        <td><a href="excluirCargo?cod=<%=x.getString("codigo_cargo")%>" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
+                        <td><a href="javascript:excluir(<%=x.getString("codigo_cargo")%>,'admin_cargos','cargos','codigo_cargo');" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
                             <a href="admin_cargos_maint.jsp?cod=<%=x.getString("codigo_cargo")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
                         </td>
                     </tr>

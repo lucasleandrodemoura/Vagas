@@ -2,6 +2,11 @@ function candidatar(componente) {
     alert("Candidatura realizada com sucesso!");
 }
 
+function excluir(codigo,retorno,tabela,key){
+    if(confirm("Voce deseja excluir este registro?")){
+        location.href = "excluir?codigo="+codigo+"&retorno="+retorno+"&tabela="+tabela+"&key="+key;
+    }
+}
 
 function validaCPF(strCPF) {
     strCPF = strCPF.value;

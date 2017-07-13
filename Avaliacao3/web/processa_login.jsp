@@ -25,6 +25,7 @@
                     session.setAttribute("id_curriculo", x.getIdcurriculo());
                     session.setAttribute("email", x.getEmail());                    
                     session.setAttribute("nome", x.getNome());                  
+                    session.setAttribute("logado", 1);  
                     
                     response.sendRedirect("editar_curriculo.jsp");
                 }else{
