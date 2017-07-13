@@ -35,7 +35,8 @@ if(session.getValue("logado")==null){
 
     <div class="col-lg-12">
         <form method="post" action="incluiFormacao?codigo_experiencia=<%=request.getParameter("codigo_experiencia")%>&id_curriculo=<%=session.getAttribute("id_curriculo").toString()%>">
-            <h3>Formaçao</h3>
+            
+            <h3>Formação</h3>
             <table id="dados" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -55,7 +56,7 @@ if(session.getValue("logado")==null){
                             
                             
                               <tr>
-                                <th>Ultimo cargo: </th>
+                                <th>Último cargo: </th>
                                 <td colspan="3">
                                     <select class="form-control small" required name="cidade">
                                         <option value=""></option>

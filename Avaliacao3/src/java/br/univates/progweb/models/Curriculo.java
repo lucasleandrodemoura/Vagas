@@ -63,7 +63,7 @@ public class Curriculo {
     public Curriculo(Integer idcurriculo) {
         try {
             Conexao conexao = new Conexao();
-            ResultSet selecionar = conexao.selecionar("select *  from curriculo where idcurriculo = 4");
+            ResultSet selecionar = conexao.selecionar("select *  from curriculo where idcurriculo = "+idcurriculo);
             
             
             while(selecionar.next()){
