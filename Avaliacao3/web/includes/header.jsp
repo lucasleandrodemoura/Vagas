@@ -110,7 +110,8 @@
                 %>
         
         <ul class="nav navbar-nav">
-                <li class="active"><a href="editar_curriculo.jsp" id="nav_home">Vagas</a></li>
+            <li class="active"><a><%=session.getAttribute("nome").toString()%></a></li>
+                <li ><a href="editar_curriculo.jsp" id="nav_home">Vagas</a></li>
                 <li><a href="editar_perfil.jsp" title="Cadastre o seu currículo" id="nav_cadastrar">Editar currículo</a></li>
                 <li><a href="logout.jsp" title="Sair" id="nav_cadastrar">Logout</a></li>
             </ul>
