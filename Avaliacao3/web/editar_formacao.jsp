@@ -37,7 +37,7 @@
         <table id="dados" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Curso: *</th>
+                    <th>Curso:</th>
                     <td colspan="3">
                         <select class="form-control small" required name="curso">
                             <option value=""></option>
@@ -58,7 +58,7 @@
                 <tr>
                     <th>Outros: </th>
                     <td><input class="form-control small" value="" type="text" name="outros"></td>
-                    <th>Concluído: *</th>
+                    <th>Concluído:</th>
                     <td>
                         <select class="form-control small" required name="concluido">
                             <option value=""></option>
@@ -73,15 +73,15 @@
 
 
                 <tr>
-                    <th>Inicio *: </th>
+                    <th>Inicio: </th>
                     <td><input class="form-control small" value="" type="date" name="inicio"></td>
-                    <th>Fim/Prev: *</th>
+                    <th>Fim/Prev:</th>
                     <td><input class="form-control small" value="" type="date" name="fim">                                </td>
 
                 </tr>
 
                 <tr>
-                    <th>Instituição: *</th>
+                    <th>Instituição:</th>
                     <td colspan="3">
                         <select class="form-control small" required name="instituicao">
                             <option value=""></option>
@@ -90,7 +90,7 @@
                                 ResultSet g = conecta.selecionar("select codigo_instituicao,nome from instituicoes order by nome");
                                 while (g.next()) {
 
-                                    out.print("<option value='" + g.getString("codigo_instituicao") + "'>" + x.getString("nome") + "</option>");
+                                    out.print("<option value='" + g.getString("codigo_instituicao") + "'>" + g.getString("nome") + "</option>");
                                 }
                                 conecta.fechar();
                             %>

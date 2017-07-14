@@ -11,6 +11,35 @@
     
     
      <servlet>
+        <servlet-name>atualizaParecer</servlet-name>
+        <servlet-class>atualizaParecer</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>atualizaParecer</servlet-name>
+        <url-pattern>/atualizaParecer</url-pattern>
+    </servlet-mapping>
+    
+    
+     <servlet>
+        <servlet-name>incluirEstados</servlet-name>
+        <servlet-class>incluirEstados</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incluirEstados</servlet-name>
+        <url-pattern>/incluirEstados</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>suspenderVaga</servlet-name>
+        <servlet-class>suspenderVaga</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>suspenderVaga</servlet-name>
+        <url-pattern>/suspenderVaga</url-pattern>
+    </servlet-mapping>
+    
+    
+     <servlet>
         <servlet-name>candidatarVaga</servlet-name>
         <servlet-class>candidatarVaga</servlet-class>
     </servlet>

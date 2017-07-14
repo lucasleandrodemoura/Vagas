@@ -15,6 +15,18 @@ body {
     width: 100%;
 }
 
+input:required {
+    border-color: red brown;
+}
+
+select:required {
+    border-color: red brown;
+}
+
+textArea:required {
+    border-color: red brown;
+}
+
 input[name=btn_ok]{
     width: 100px;
 }

@@ -33,7 +33,7 @@
                                     <th>Cidade:</th>
                                     <th>Telefone:</th>
                                     <th>E-mail:</th>
-                                    <th>Foto:</th>
+                                    
                                     <th>Ações</th>
                                 </tr>
                             </thead>      
@@ -49,8 +49,9 @@
                                     <td><%=x.getString("nome_cidade")%>/<%=x.getString("sigla")%></td>
                                     <td><%=x.getString("telefone")%></td>
                                     <td><%=x.getString("email")%></td>
-                                    <td><img src="<%=request.getContextPath()%>/fotos/<%=x.getString("foto")%>" class="img-thumbnail img-responsive" width="80px"></td>
-                                    <td><a href="editar_perfil.jsp?cod=<%=x.getString("idcurriculo")%>&visualizar=1" target="_blank" class="btn btn-default">Abrir</a>
+                                    
+                                    <td><a href='javascript:window.open("admin_abrir_curriculo.jsp?cod=<%=x.getString("idcurriculo")%>", "", "width=700,height=600");' class="btn btn-default">Abrir</a>
+                                        <a href='javascript:window.open("admin_parecer.jsp?cod=<%=x.getString("idcurriculo")%>&codigo_vaga=<%=request.getParameter("cod")%>", "", "width=500,height=300");' class="btn btn-default">Parecer</a>
                                     
                                     </td>
                                 </tr>

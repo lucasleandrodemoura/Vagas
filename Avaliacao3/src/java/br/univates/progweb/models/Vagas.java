@@ -88,7 +88,7 @@ public class Vagas{
 "                            <div class=\"caption\">\n" +
 "                                <h3>"+this.getTitulo()+"</h3>\n" +
 "                                <p>"+this.getRequisitos()+"<br>Salário: R$ "+this.getSalario()+"</p>\n" +
-"                                 <a href=\"admin_cadastrar_vaga.jsp?cod="+this.getIdvagas()+"\" class=\"btn btn-default small\" role=\"button\" id=\"Link_Candidatar1\">Editar</a>"+
+"                                 <a href=\"suspenderVaga?cod="+this.getIdvagas()+"\" class=\"btn btn-default small\" role=\"button\" id=\"Link_Candidatar1\">Suspender vaga</a>"+
                                  "<a href=\"admin_ver_candidatos.jsp?cod="+this.getIdvagas()+"\" class=\"btn btn-default small\" role=\"button\" id=\"Link_Candidatar2\">Ver candidatos</a>"+
 "                            </div>\n" +
 "                        </div>\n" +

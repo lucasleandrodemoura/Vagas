@@ -27,23 +27,7 @@
         <link rel="stylesheet" type="text/css" href="css/custom.css" />
         
         
-        <script type="text/javascript">
-            
-            
-            <!-- Função javascript para chamar Srvlet de exclusão de registro -->
-            function excluirRegistro(codigo, nome) {
-                if (confirm('Confirmar exclusão?')) {
-                    window.location.href = "<%=request.getContextPath()%>/"+nome+"?cod=" + codigo;
-                } else {
-                    alert('Exclusão cancelada.');
-                }
-            }
-            
-            $(document).ready(function(){
-                $('#tableDinamic').DataTable();
-            });
-            
-        </script> 
+      
     <body>
         <!-- Inicio da barra no topo !-->
         
@@ -97,6 +81,7 @@
                 <li><a href="admin_logado.jsp" id="nav_home">Vagas</a></li>
                 <li><a href="admin_curriculos.jsp" title="Visualizar todos os currículos cadastrados" id="nav_cadastrar">Visualizar currículos</a></li>
                 <li><a href="admin_usuarios.jsp" title="Realize a manutenção de todos os cadastros de usuários administradores do sistema" id="nav_cadastrar">Recrutadores</a></li>
+                <li><a href="admin_estados.jsp" title="Estados" id="nav_cadastrar">Estados</a></li>
                 <li><a href="admin_cidades.jsp" title="Cidades" id="nav_cadastrar">Cidades</a></li>
                 <li><a href="admin_cargos.jsp" title="Cargos" id="nav_cadastrar">Cargos</a></li>
                 <li><a href="admin_instituicoes.jsp" title="Universidades" id="nav_cadastrar">Instituições</a></li>
@@ -113,6 +98,7 @@
             <li class="active"><a><%=session.getAttribute("nome").toString()%></a></li>
                 <li ><a href="editar_curriculo.jsp" id="nav_home">Vagas</a></li>
                 <li><a href="editar_perfil.jsp" title="Cadastre o seu currículo" id="nav_cadastrar">Editar currículo</a></li>
+                <li><a href="processo_seletivo.jsp" title="Cadastre o seu currículo" id="nav_cadastrar">Processos seletivos</a></li>
                 <li><a href="logout.jsp" title="Sair" id="nav_cadastrar">Logout</a></li>
             </ul>
          <% 

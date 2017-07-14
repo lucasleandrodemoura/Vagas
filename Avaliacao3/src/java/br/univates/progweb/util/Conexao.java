@@ -182,16 +182,6 @@ public class Conexao {
 "\n" +
 "\n" +
 "\n" +
-"CREATE TABLE IF NOT EXISTS processo_seletivo (\n" +
-"  codigo_vaga INTEGER NOT NULL,\n" +
-"  candidato_selecionado INTEGER NOT NULL,\n" +
-"  parecer varchar(45) DEFAULT NULL,\n" +
-"  recrutador INTEGER NOT NULL,\n" +
-"  PRIMARY KEY (codigo_vaga,candidato_selecionado),\n" +
-"  CONSTRAINT fk_processo_seletivo_administradores1 FOREIGN KEY (recrutador) REFERENCES administradores (codigo_usuario) ON DELETE NO ACTION ON UPDATE NO ACTION,\n" +
-"  CONSTRAINT fk_vagas_has_curriculo_curriculo2 FOREIGN KEY (candidato_selecionado) REFERENCES curriculo (idcurriculo) ON DELETE NO ACTION ON UPDATE NO ACTION,\n" +
-"  CONSTRAINT fk_vagas_has_curriculo_vagas2 FOREIGN KEY (codigo_vaga) REFERENCES vagas (idvagas) ON DELETE NO ACTION ON UPDATE NO ACTION\n" +
-") ;\n" +
 "\n" +
 "\n" +
 "\n" +
@@ -201,7 +191,11 @@ public class Conexao {
 "  PRIMARY KEY (codigo_vaga,codigo_candidato),\n" +
 "  CONSTRAINT fk_vagas_has_curriculo_curriculo1 FOREIGN KEY (codigo_candidato) REFERENCES curriculo (idcurriculo) ON DELETE NO ACTION ON UPDATE NO ACTION,\n" +
 "  CONSTRAINT fk_vagas_has_curriculo_vagas1 FOREIGN KEY (codigo_vaga) REFERENCES vagas (idvagas) ON DELETE NO ACTION ON UPDATE NO ACTION\n" +
-") ;";
+") ;"
+                + "\n"
+                + "ALTER TABLE candidatura ADD COLUMN parecer character varying(255);"
+                + "\n"
+                + "";
 
         boolean retorno = this.incluir(sql);
     }
