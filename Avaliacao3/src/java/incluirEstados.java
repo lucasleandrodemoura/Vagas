@@ -30,15 +30,23 @@ public class incluirEstados extends HttpServlet {
         
         String nome = request.getParameter("nome");
         String sigla = request.getParameter("sigla");
-        
+            int codigo_estado = Integer.parseInt(request.getParameter("codigo_estado"));
+        String sql = "";
+        if(codigo_estado>0){
+             
+                sql = "UPDATE estado SET \n" +
+                    "            nome_estado = '"+nome+"', \n" +
+                    "            sigla = '"+sigla+"' WHERE codigo_estado = "+codigo_estado;
+        }else{
         
        
-        String sql = "INSERT INTO estado(\n" +
-"            nome_estado, \n" +
-"            sigla)\n" +
-"    VALUES (\n" +
-"    '"+nome+"', \n" +
-"    '"+sigla+"');";
+                sql = "INSERT INTO estado(\n" +
+                "            nome_estado, \n" +
+                "            sigla)\n" +
+                "    VALUES (\n" +
+                "    '"+nome+"', \n" +
+                "    '"+sigla+"');";
+        }
         
         try {
             Conexao x = new Conexao();

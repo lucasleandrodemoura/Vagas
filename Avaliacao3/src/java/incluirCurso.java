@@ -30,16 +30,20 @@ public class incluirCurso extends HttpServlet {
         
         String nome = request.getParameter("descricao");
         String nivel = request.getParameter("nivel");
-        
-        
-       
-        String sql = "INSERT INTO cursos(\n" +
+            int codigo_curso = Integer.parseInt(request.getParameter("codigo_curso"));
+        String sql = "";
+        if(codigo_curso>0){
+         sql = "UPDATE cursos SET " +
+"            nome_curso = '"+nome+"', \n" +
+"            nivel = "+nivel+" WHERE codigo_curso = "+codigo_curso;
+        }else{
+        sql = "INSERT INTO cursos(\n" +
 "            nome_curso, \n" +
 "            nivel)\n" +
 "    VALUES (\n" +
 "    '"+nome+"', \n" +
 "    "+ nivel+");";
-        
+        }
         try {
             Conexao x = new Conexao();
             if(x.incluir(sql)){

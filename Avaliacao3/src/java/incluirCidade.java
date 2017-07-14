@@ -32,14 +32,21 @@ public class incluirCidade extends HttpServlet {
         String estado = request.getParameter("estado");
         
         
-       
-        String sql = "INSERT INTO cidades(\n" +
+            int codigo_cidade = Integer.parseInt(request.getParameter("codigo_cidade"));
+        String sql = "";
+        if(codigo_cidade>0){
+            sql = "UPDATE cidades SET " +
+"            nome_cidade = '"+nome+"', \n" +
+"            codigo_estado = "+estado+" WHERE codigo_cidade = "+codigo_cidade;
+
+        }else{
+        sql = "INSERT INTO cidades(\n" +
 "            nome_cidade, \n" +
 "            codigo_estado)\n" +
 "    VALUES (\n" +
 "    '"+nome+"', \n" +
 "    "+estado+");";
-        
+        }
         try {
             Conexao x = new Conexao();
             if(x.incluir(sql)){

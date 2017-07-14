@@ -7,6 +7,8 @@
 
 
 
+<%@page import="br.univates.progweb.models.Estado"%>
+<%@page import="br.univates.progweb.models.Cidades"%>
 <%@page import="br.univates.progweb.util.Conexao"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="org.apache.catalina.session.StandardSession"%>
@@ -17,27 +19,51 @@ if(session.getValue("logado_admin")==null){
 }
 %>
 
+
+    <%
+                        Conexao conecta2 = new Conexao();
+                        ResultSet y = conecta2.selecionar("select * from cursos WHERE codigo_curso = "+request.getParameter("cod"));
+                         Cidades tx = new Cidades();
+                        
+                        while(y.next()){
+                            tx.setCodigoCidade(y.getInt("codigo_curso"));
+                            Estado t = new Estado();
+                            t.setCodigoEstado(y.getInt("codigo_estado"));
+                            
+                            tx.setCodigoEstado(t);
+                            tx.setNomeCidade(y.getString("nome_cidade"));
+                           
+                        }
+                        conecta2.fechar();
+            
+                    %>
+
     <%@ include file="includes/header.jsp" %>
    <div class="conteudo">
                 <div class="row">
                     <div class="col-lg-12">
                         <h3>Cidades</h3>
                         <form name="formulario" method="post" action="incluirCidade">
+                            <input type="hidden" name="nome" maxlength="50" value="<%=tx.getCodigoCidade()%>" class="form-control">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Nome:</th>
-                                <td><input type="text" name="nome" maxlength="50" required class="form-control"></td>
+                                <td><input type="text" name="nome" maxlength="50" value="<%=tx.getNomeCidade()%>" required class="form-control"></td>
                             </tr>
                             <tr>
                                 <th>Estado:</th>
                                 <td><select class="form-control" required name="estado">
              <%
+                 
                         Conexao conecta = new Conexao();
                         ResultSet x = conecta.selecionar("select codigo_estado,sigla from estado ORDER BY sigla");
+                        String select = "";
                         while(x.next()){
-                            
-                            out.print("<option value='"+x.getString("codigo_estado")+"'>"+x.getString("sigla")+"</option>");
+                            if(tx.getCodigoEstado().getCodigoEstado()==Integer.parseInt(x.getString("codigo_estado"))){
+                                select = "select";
+                            }
+                            out.print("<option value='"+x.getString("codigo_estado")+"' "+select+">"+x.getString("sigla")+"</option>");
                         }
                         conecta.fechar();
             
