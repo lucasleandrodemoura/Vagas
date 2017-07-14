@@ -291,7 +291,7 @@ public class Curriculo {
                 this.setEstadoCivil(Integer.parseInt(selecionar.getString("estado_civil")));
                 this.setIdcurriculo(Integer.parseInt(selecionar.getString("idcurriculo")));
                 this.setNome(selecionar.getString("nome"));
-                this.setObservacoes(selecionar.getString("observacao"));
+                this.setObservacoes(selecionar.getString("observacoes"));
                 this.setPdf(selecionar.getString("pdf"));
                 this.setPretencaoSalarial(Float.parseFloat(selecionar.getString("pretencao_salarial")));
                 this.setSenha(selecionar.getString("senha"));

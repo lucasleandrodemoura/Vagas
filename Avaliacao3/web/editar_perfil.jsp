@@ -57,7 +57,7 @@ if(session.getValue("logado")==null){
                             
                             <tr>
                                 <th>Pretensao Salarial: </th>
-                                <td><input class="form-control small cpf" value="<%=candidato.getPretencaoSalarial()%>" type="text" required name="pretensao_salarial"></td>
+                                <td><input class="form-control small " value="<%=candidato.getPretencaoSalarial()%>" type="text" required name="pretensao_salarial"></td>
                                 <th></th>
                                 <td></td>
                                 

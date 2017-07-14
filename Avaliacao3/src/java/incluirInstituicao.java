@@ -31,12 +31,14 @@ public class incluirInstituicao extends HttpServlet {
         String nome = request.getParameter("nome");
         
         
-        
+        int codigo_instituicao = Integer.parseInt(request.getParameter("codigo_instituicao"));
+        String sql = "";
+        if(codigo_instituicao>0){
+            sql = "update administradores set nome = '"+nome+"' where codigo_usuario = "+codigo_instituicao;
+        }else{
+            sql = "INSERT INTO instituicoes(nome) VALUES ('"+nome+"');";
+        }
        
-        String sql = "INSERT INTO instituicoes(\n" +
-"            nome)\n" +
-"    VALUES (\n" +
-"    '"+nome+"');";
         
         try {
             Conexao x = new Conexao();

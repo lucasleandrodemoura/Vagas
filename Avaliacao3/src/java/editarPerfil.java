@@ -48,7 +48,7 @@ public class editarPerfil extends HttpServlet {
         String foto = request.getParameter("foto");
         String id_curriculo = request.getParameter("id_curriculo");
         String observacoes = request.getParameter("observacoes");
-        String pretensao_salarial = request.getParameter("pretencao_salarial");        
+        String pretensao_salarial = request.getParameter("pretensao_salarial");        
                 
         
         String sql = "UPDATE public.curriculo\n" +
@@ -57,7 +57,7 @@ public class editarPerfil extends HttpServlet {
 "       telefone='"+telefone+"', celular='"+celular+"', email='"+email+"', senha='"+senha+"', observacoes='"+observacoes+"' WHERE idcurriculo = "+id_curriculo+";";
        
         
-        
+        System.out.println(sql);
         try {
             Conexao x = new Conexao();
             if(x.incluir(sql)){

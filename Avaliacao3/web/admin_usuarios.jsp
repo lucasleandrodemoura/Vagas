@@ -45,7 +45,7 @@
                                     <td><%=x.getString("email")%></td>
                                     
                                     <td><a href="javascript:excluir(<%=x.getString("codigo_usuario")%>,'admin_usuarios','administradores','codigo_usuario');" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i></a>
-                                        <a href="?cod=<%=x.getString("codigo_usuario")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
+                                        <a href="admin_usuarios_maint.jsp?cod=<%=x.getString("codigo_usuario")%>" class="btn btn-default"><i class="glyphicon glyphicon-edit"></i>
                                     </td>
                                 </tr>
                                     <% 

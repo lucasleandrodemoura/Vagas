@@ -52,6 +52,7 @@
                                     
                                     <td><a href='javascript:window.open("admin_abrir_curriculo.jsp?cod=<%=x.getString("idcurriculo")%>", "", "width=700,height=600");' class="btn btn-default">Abrir</a>
                                         <a href='javascript:window.open("admin_parecer.jsp?cod=<%=x.getString("idcurriculo")%>&codigo_vaga=<%=request.getParameter("cod")%>", "", "width=500,height=300");' class="btn btn-default">Parecer</a>
+                                        <a href='javascript:window.open("contratarFuncionario?codigo_curriculo=<%=x.getString("idcurriculo")%>&codigo_vaga=<%=request.getParameter("cod")%>", "", "width=200,height=150");' class="btn btn-primary">Contratar</a>
                                     
                                     </td>
                                 </tr>

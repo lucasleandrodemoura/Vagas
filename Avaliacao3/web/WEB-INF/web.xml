@@ -10,6 +10,16 @@
     </servlet-mapping>
     
     
+    <servlet>
+        <servlet-name>contratarFuncionario</servlet-name>
+        <servlet-class>contratarFuncionario</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>contratarFuncionario</servlet-name>
+        <url-pattern>/contratarFuncionario</url-pattern>
+    </servlet-mapping>
+    
+    
      <servlet>
         <servlet-name>atualizaParecer</servlet-name>
         <servlet-class>atualizaParecer</servlet-class>

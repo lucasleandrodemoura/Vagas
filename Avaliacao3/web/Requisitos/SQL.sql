@@ -5,7 +5,7 @@
 -- Dumped from database version 9.5.7
 -- Dumped by pg_dump version 9.5.7
 
--- Started on 2017-07-11 21:55:41 BRT
+-- Started on 2017-07-13 21:43:57 BRT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -24,7 +24,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2307 (class 0 OID 0)
+-- TOC entry 2299 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -70,7 +70,7 @@ CREATE SEQUENCE administradores_codigo_usuario_seq
 ALTER TABLE administradores_codigo_usuario_seq OWNER TO postgres;
 
 --
--- TOC entry 2308 (class 0 OID 0)
+-- TOC entry 2300 (class 0 OID 0)
 -- Dependencies: 181
 -- Name: administradores_codigo_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -79,20 +79,21 @@ ALTER SEQUENCE administradores_codigo_usuario_seq OWNED BY administradores.codig
 
 
 --
--- TOC entry 202 (class 1259 OID 17072)
+-- TOC entry 201 (class 1259 OID 17072)
 -- Name: candidatura; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE candidatura (
     codigo_vaga integer NOT NULL,
-    codigo_candidato integer NOT NULL
+    codigo_candidato integer NOT NULL,
+    parecer character varying(255)
 );
 
 
 ALTER TABLE candidatura OWNER TO postgres;
 
 --
--- TOC entry 201 (class 1259 OID 17070)
+-- TOC entry 200 (class 1259 OID 17070)
 -- Name: candidatura_codigo_vaga_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -107,8 +108,8 @@ CREATE SEQUENCE candidatura_codigo_vaga_seq
 ALTER TABLE candidatura_codigo_vaga_seq OWNER TO postgres;
 
 --
--- TOC entry 2309 (class 0 OID 0)
--- Dependencies: 201
+-- TOC entry 2301 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: candidatura_codigo_vaga_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -144,7 +145,7 @@ CREATE SEQUENCE cargos_codigo_cargo_seq
 ALTER TABLE cargos_codigo_cargo_seq OWNER TO postgres;
 
 --
--- TOC entry 2310 (class 0 OID 0)
+-- TOC entry 2302 (class 0 OID 0)
 -- Dependencies: 183
 -- Name: cargos_codigo_cargo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -195,7 +196,7 @@ CREATE SEQUENCE cidades_codigo_cidade_seq
 ALTER TABLE cidades_codigo_cidade_seq OWNER TO postgres;
 
 --
--- TOC entry 2311 (class 0 OID 0)
+-- TOC entry 2303 (class 0 OID 0)
 -- Dependencies: 189
 -- Name: cidades_codigo_cidade_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -246,7 +247,7 @@ CREATE SEQUENCE curriculo_idcurriculo_seq
 ALTER TABLE curriculo_idcurriculo_seq OWNER TO postgres;
 
 --
--- TOC entry 2312 (class 0 OID 0)
+-- TOC entry 2304 (class 0 OID 0)
 -- Dependencies: 191
 -- Name: curriculo_idcurriculo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -284,7 +285,7 @@ CREATE SEQUENCE cursos_codigo_curso_seq
 ALTER TABLE cursos_codigo_curso_seq OWNER TO postgres;
 
 --
--- TOC entry 2313 (class 0 OID 0)
+-- TOC entry 2305 (class 0 OID 0)
 -- Dependencies: 185
 -- Name: cursos_codigo_curso_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -322,7 +323,7 @@ CREATE SEQUENCE estado_codigo_estado_seq
 ALTER TABLE estado_codigo_estado_seq OWNER TO postgres;
 
 --
--- TOC entry 2314 (class 0 OID 0)
+-- TOC entry 2306 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: estado_codigo_estado_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -364,7 +365,7 @@ CREATE SEQUENCE experiencia_codigo_experiencia_seq
 ALTER TABLE experiencia_codigo_experiencia_seq OWNER TO postgres;
 
 --
--- TOC entry 2315 (class 0 OID 0)
+-- TOC entry 2307 (class 0 OID 0)
 -- Dependencies: 194
 -- Name: experiencia_codigo_experiencia_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -407,7 +408,7 @@ CREATE SEQUENCE formacao_codigo_formacao_seq
 ALTER TABLE formacao_codigo_formacao_seq OWNER TO postgres;
 
 --
--- TOC entry 2316 (class 0 OID 0)
+-- TOC entry 2308 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: formacao_codigo_formacao_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -444,7 +445,7 @@ CREATE SEQUENCE instituicoes_codigo_instituicao_seq
 ALTER TABLE instituicoes_codigo_instituicao_seq OWNER TO postgres;
 
 --
--- TOC entry 2317 (class 0 OID 0)
+-- TOC entry 2309 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: instituicoes_codigo_instituicao_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -453,22 +454,7 @@ ALTER SEQUENCE instituicoes_codigo_instituicao_seq OWNED BY instituicoes.codigo_
 
 
 --
--- TOC entry 200 (class 1259 OID 17049)
--- Name: processo_seletivo; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE processo_seletivo (
-    codigo_vaga integer NOT NULL,
-    candidato_selecionado integer NOT NULL,
-    parecer character varying(45) DEFAULT NULL::character varying,
-    recrutador integer NOT NULL
-);
-
-
-ALTER TABLE processo_seletivo OWNER TO postgres;
-
---
--- TOC entry 204 (class 1259 OID 17118)
+-- TOC entry 203 (class 1259 OID 17118)
 -- Name: vagas; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -480,14 +466,15 @@ CREATE TABLE vagas (
     codigo_cidade integer NOT NULL,
     salario double precision NOT NULL,
     titulo character varying(50) NOT NULL,
-    candidato_selecionado integer
+    candidato_selecionado integer,
+    suspender boolean DEFAULT false
 );
 
 
 ALTER TABLE vagas OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 17116)
+-- TOC entry 202 (class 1259 OID 17116)
 -- Name: vagas_idvagas_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -502,8 +489,8 @@ CREATE SEQUENCE vagas_idvagas_seq
 ALTER TABLE vagas_idvagas_seq OWNER TO postgres;
 
 --
--- TOC entry 2318 (class 0 OID 0)
--- Dependencies: 203
+-- TOC entry 2310 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: vagas_idvagas_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -511,7 +498,7 @@ ALTER SEQUENCE vagas_idvagas_seq OWNED BY vagas.idvagas;
 
 
 --
--- TOC entry 2092 (class 2604 OID 16882)
+-- TOC entry 2089 (class 2604 OID 16882)
 -- Name: codigo_usuario; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -519,7 +506,7 @@ ALTER TABLE ONLY administradores ALTER COLUMN codigo_usuario SET DEFAULT nextval
 
 
 --
--- TOC entry 2118 (class 2604 OID 17075)
+-- TOC entry 2114 (class 2604 OID 17075)
 -- Name: codigo_vaga; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -527,7 +514,7 @@ ALTER TABLE ONLY candidatura ALTER COLUMN codigo_vaga SET DEFAULT nextval('candi
 
 
 --
--- TOC entry 2094 (class 2604 OID 16893)
+-- TOC entry 2091 (class 2604 OID 16893)
 -- Name: codigo_cargo; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -535,7 +522,7 @@ ALTER TABLE ONLY cargos ALTER COLUMN codigo_cargo SET DEFAULT nextval('cargos_co
 
 
 --
--- TOC entry 2100 (class 2604 OID 16920)
+-- TOC entry 2097 (class 2604 OID 16920)
 -- Name: codigo_cidade; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -543,7 +530,7 @@ ALTER TABLE ONLY cidades ALTER COLUMN codigo_cidade SET DEFAULT nextval('cidades
 
 
 --
--- TOC entry 2101 (class 2604 OID 16933)
+-- TOC entry 2098 (class 2604 OID 16933)
 -- Name: idcurriculo; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -551,7 +538,7 @@ ALTER TABLE ONLY curriculo ALTER COLUMN idcurriculo SET DEFAULT nextval('curricu
 
 
 --
--- TOC entry 2095 (class 2604 OID 16901)
+-- TOC entry 2092 (class 2604 OID 16901)
 -- Name: codigo_curso; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -559,7 +546,7 @@ ALTER TABLE ONLY cursos ALTER COLUMN codigo_curso SET DEFAULT nextval('cursos_co
 
 
 --
--- TOC entry 2097 (class 2604 OID 16910)
+-- TOC entry 2094 (class 2604 OID 16910)
 -- Name: codigo_estado; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -567,7 +554,7 @@ ALTER TABLE ONLY estado ALTER COLUMN codigo_estado SET DEFAULT nextval('estado_c
 
 
 --
--- TOC entry 2112 (class 2604 OID 16974)
+-- TOC entry 2109 (class 2604 OID 16974)
 -- Name: codigo_experiencia; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -575,7 +562,7 @@ ALTER TABLE ONLY experiencia ALTER COLUMN codigo_experiencia SET DEFAULT nextval
 
 
 --
--- TOC entry 2115 (class 2604 OID 17004)
+-- TOC entry 2112 (class 2604 OID 17004)
 -- Name: codigo_formacao; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -583,7 +570,7 @@ ALTER TABLE ONLY formacao ALTER COLUMN codigo_formacao SET DEFAULT nextval('form
 
 
 --
--- TOC entry 2114 (class 2604 OID 16996)
+-- TOC entry 2111 (class 2604 OID 16996)
 -- Name: codigo_instituicao; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -591,7 +578,7 @@ ALTER TABLE ONLY instituicoes ALTER COLUMN codigo_instituicao SET DEFAULT nextva
 
 
 --
--- TOC entry 2119 (class 2604 OID 17121)
+-- TOC entry 2115 (class 2604 OID 17121)
 -- Name: idvagas; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -599,20 +586,19 @@ ALTER TABLE ONLY vagas ALTER COLUMN idvagas SET DEFAULT nextval('vagas_idvagas_s
 
 
 --
--- TOC entry 2277 (class 0 OID 16879)
+-- TOC entry 2270 (class 0 OID 16879)
 -- Dependencies: 182
 -- Data for Name: administradores; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY administradores (codigo_usuario, email, senha, nome, ativo) FROM stdin;
 3	lucasleandrodemoura@gmail.com	1234	Lucas Leandro de Moura	t
-4	aetaet@taeeat.com	aetaetaet	taaeteataet	t
 5	taetaetae@teaeattae.com	atetae	aettaetaetae	t
 \.
 
 
 --
--- TOC entry 2319 (class 0 OID 0)
+-- TOC entry 2311 (class 0 OID 0)
 -- Dependencies: 181
 -- Name: administradores_codigo_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -621,18 +607,20 @@ SELECT pg_catalog.setval('administradores_codigo_usuario_seq', 5, true);
 
 
 --
--- TOC entry 2297 (class 0 OID 17072)
--- Dependencies: 202
+-- TOC entry 2289 (class 0 OID 17072)
+-- Dependencies: 201
 -- Data for Name: candidatura; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY candidatura (codigo_vaga, codigo_candidato) FROM stdin;
+COPY candidatura (codigo_vaga, codigo_candidato, parecer) FROM stdin;
+1	4	\N
+3	4	agga
 \.
 
 
 --
--- TOC entry 2320 (class 0 OID 0)
--- Dependencies: 201
+-- TOC entry 2312 (class 0 OID 0)
+-- Dependencies: 200
 -- Name: candidatura_codigo_vaga_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -640,7 +628,7 @@ SELECT pg_catalog.setval('candidatura_codigo_vaga_seq', 1, false);
 
 
 --
--- TOC entry 2279 (class 0 OID 16890)
+-- TOC entry 2272 (class 0 OID 16890)
 -- Dependencies: 184
 -- Data for Name: cargos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -648,14 +636,11 @@ SELECT pg_catalog.setval('candidatura_codigo_vaga_seq', 1, false);
 COPY cargos (codigo_cargo, descricao) FROM stdin;
 1	Programador
 2	Técnico em informática
-3	Farmaceutico
-4	Frentista
-7	aettaetae
 \.
 
 
 --
--- TOC entry 2321 (class 0 OID 0)
+-- TOC entry 2313 (class 0 OID 0)
 -- Dependencies: 183
 -- Name: cargos_codigo_cargo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -664,7 +649,7 @@ SELECT pg_catalog.setval('cargos_codigo_cargo_seq', 7, true);
 
 
 --
--- TOC entry 2288 (class 0 OID 16954)
+-- TOC entry 2281 (class 0 OID 16954)
 -- Dependencies: 193
 -- Data for Name: cargos_pretendidos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -674,7 +659,7 @@ COPY cargos_pretendidos (codigo_cargo, codigo_curriculo) FROM stdin;
 
 
 --
--- TOC entry 2285 (class 0 OID 16917)
+-- TOC entry 2278 (class 0 OID 16917)
 -- Dependencies: 190
 -- Data for Name: cidades; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -682,12 +667,11 @@ COPY cargos_pretendidos (codigo_cargo, codigo_curriculo) FROM stdin;
 COPY cidades (codigo_cidade, nome_cidade, codigo_estado) FROM stdin;
 1	Estrela	1
 4	ateaettaetaetae	1
-5	testetaeeattaetaetae	3
 \.
 
 
 --
--- TOC entry 2322 (class 0 OID 0)
+-- TOC entry 2314 (class 0 OID 0)
 -- Dependencies: 189
 -- Name: cidades_codigo_cidade_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -696,88 +680,92 @@ SELECT pg_catalog.setval('cidades_codigo_cidade_seq', 5, true);
 
 
 --
--- TOC entry 2287 (class 0 OID 16930)
+-- TOC entry 2280 (class 0 OID 16930)
 -- Dependencies: 192
 -- Data for Name: curriculo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY curriculo (idcurriculo, cidade_residencia, pretencao_salarial, nome, estado_civil, data_nascimento, cpf, endereco, bairro, telefone, celular, email, senha, observacoes, pdf, foto) FROM stdin;
+4	1	\N	Lucas Leandro de Moura	1	1989-12-29	01664739017	RUA CRUZEIRO DO SUL	Industrias	5191617124	5191617124	lucasleandrodemoura@gmail.com	1234	null	\N	Formatura Técnico em Informática 2012 (28).JPG
 \.
 
 
 --
--- TOC entry 2323 (class 0 OID 0)
+-- TOC entry 2315 (class 0 OID 0)
 -- Dependencies: 191
 -- Name: curriculo_idcurriculo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('curriculo_idcurriculo_seq', 3, true);
+SELECT pg_catalog.setval('curriculo_idcurriculo_seq', 4, true);
 
 
 --
--- TOC entry 2281 (class 0 OID 16898)
+-- TOC entry 2274 (class 0 OID 16898)
 -- Dependencies: 186
 -- Data for Name: cursos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY cursos (codigo_curso, nome_curso, nivel) FROM stdin;
-1	taeteataetae	1
-2	taeeattaeaet	3
+4	Análise e Desenvolvimento de Sistemas	3
+5	Técnico em Informática	2
+6	Computação Aplicada	4
 \.
 
 
 --
--- TOC entry 2324 (class 0 OID 0)
+-- TOC entry 2316 (class 0 OID 0)
 -- Dependencies: 185
 -- Name: cursos_codigo_curso_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('cursos_codigo_curso_seq', 2, true);
+SELECT pg_catalog.setval('cursos_codigo_curso_seq', 6, true);
 
 
 --
--- TOC entry 2283 (class 0 OID 16907)
+-- TOC entry 2276 (class 0 OID 16907)
 -- Dependencies: 188
 -- Data for Name: estado; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY estado (codigo_estado, nome_estado, sigla) FROM stdin;
 1	Rio Grande do Sul	RS
-2	Santa Catarina	SC
-3	Paraná	PR
+4	Distrito Federal	DF
 \.
 
 
 --
--- TOC entry 2325 (class 0 OID 0)
+-- TOC entry 2317 (class 0 OID 0)
 -- Dependencies: 187
 -- Name: estado_codigo_estado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('estado_codigo_estado_seq', 3, true);
+SELECT pg_catalog.setval('estado_codigo_estado_seq', 4, true);
 
 
 --
--- TOC entry 2290 (class 0 OID 16971)
+-- TOC entry 2283 (class 0 OID 16971)
 -- Dependencies: 195
 -- Data for Name: experiencia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY experiencia (codigo_experiencia, nome_empresa, atividades_desempenhadas, ultimo_cargo_ocupado, data_de, data_ate, codigo_curriculo) FROM stdin;
+2	Conpasul Construções e Serviços Ltda	Programador PHP	1	2011-03-01	2017-07-13	4
+3	Governo do RS	Professor de curso técnico	2	2013-08-13	2017-07-13	4
+5	8Bit Soluções em Ti Ltda	Sócio	1	2017-03-01	2017-07-13	4
 \.
 
 
 --
--- TOC entry 2326 (class 0 OID 0)
+-- TOC entry 2318 (class 0 OID 0)
 -- Dependencies: 194
 -- Name: experiencia_codigo_experiencia_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('experiencia_codigo_experiencia_seq', 1, false);
+SELECT pg_catalog.setval('experiencia_codigo_experiencia_seq', 5, true);
 
 
 --
--- TOC entry 2294 (class 0 OID 17001)
+-- TOC entry 2287 (class 0 OID 17001)
 -- Dependencies: 199
 -- Data for Name: formacao; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -787,7 +775,7 @@ COPY formacao (codigo_formacao, curso, outros, concluido, inicio, fim, codigo_in
 
 
 --
--- TOC entry 2327 (class 0 OID 0)
+-- TOC entry 2319 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: formacao_codigo_formacao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -796,59 +784,50 @@ SELECT pg_catalog.setval('formacao_codigo_formacao_seq', 1, false);
 
 
 --
--- TOC entry 2292 (class 0 OID 16993)
+-- TOC entry 2285 (class 0 OID 16993)
 -- Dependencies: 197
 -- Data for Name: instituicoes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY instituicoes (codigo_instituicao, nome) FROM stdin;
-1	aetaettaetae
 2	Univates
 3	EEEPE
 \.
 
 
 --
--- TOC entry 2328 (class 0 OID 0)
+-- TOC entry 2320 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: instituicoes_codigo_instituicao_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('instituicoes_codigo_instituicao_seq', 3, true);
+SELECT pg_catalog.setval('instituicoes_codigo_instituicao_seq', 5, true);
 
 
 --
--- TOC entry 2295 (class 0 OID 17049)
--- Dependencies: 200
--- Data for Name: processo_seletivo; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY processo_seletivo (codigo_vaga, candidato_selecionado, parecer, recrutador) FROM stdin;
-\.
-
-
---
--- TOC entry 2299 (class 0 OID 17118)
--- Dependencies: 204
+-- TOC entry 2291 (class 0 OID 17118)
+-- Dependencies: 203
 -- Data for Name: vagas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY vagas (idvagas, aberto_ate, descricao, requisitos, codigo_cidade, salario, titulo, candidato_selecionado) FROM stdin;
-1	2017-07-19	eatlkaetlçkaeçlt\r\naeteatçkaeçlkae\r\naetkjaeçlea\r\naetçkjaetçlkae	taetaetaeeattae\r\nte\r\naet\r\naetçkaeçlkeatlçkaetçl\r\n\r\n\r\naetlaekçlaektlçaet\r\naetçkaeçlkaeçlkçl	1	2222	taeeateateat	\N
+COPY vagas (idvagas, aberto_ate, descricao, requisitos, codigo_cidade, salario, titulo, candidato_selecionado, suspender) FROM stdin;
+1	1969-01-01	eatlkaetlçkaeçlt\r\naeteatçkaeçlkae\r\naetkjaeçlea\r\naetçkjaetçlkae	taetaetaeeattae\r\nte\r\naet\r\naetçkaeçlkeatlçkaetçl\r\n\r\n\r\naetlaekçlaektlçaet\r\naetçkaeçlkaeçlkçl	1	2222	taeeateateat	\N	f
+2	1969-01-01	aetaetaeteateattae	taetaetae	1	11111	taeaetaetaet	\N	f
+3	2017-09-12	Irá trabalhar em um projeto bancário, realizando codificação conforme demandas apontadas pelos analistas.	Deve ter boa lógica de programação, conhecimento em Java	1	2000	Desenvolvedor	\N	f
 \.
 
 
 --
--- TOC entry 2329 (class 0 OID 0)
--- Dependencies: 203
+-- TOC entry 2321 (class 0 OID 0)
+-- Dependencies: 202
 -- Name: vagas_idvagas_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('vagas_idvagas_seq', 1, true);
+SELECT pg_catalog.setval('vagas_idvagas_seq', 3, true);
 
 
 --
--- TOC entry 2121 (class 2606 OID 16887)
+-- TOC entry 2118 (class 2606 OID 16887)
 -- Name: administradores_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -857,7 +836,7 @@ ALTER TABLE ONLY administradores
 
 
 --
--- TOC entry 2123 (class 2606 OID 16885)
+-- TOC entry 2120 (class 2606 OID 16885)
 -- Name: administradores_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -866,7 +845,7 @@ ALTER TABLE ONLY administradores
 
 
 --
--- TOC entry 2145 (class 2606 OID 17077)
+-- TOC entry 2140 (class 2606 OID 17077)
 -- Name: candidatura_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -875,7 +854,7 @@ ALTER TABLE ONLY candidatura
 
 
 --
--- TOC entry 2125 (class 2606 OID 16895)
+-- TOC entry 2122 (class 2606 OID 16895)
 -- Name: cargos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -884,7 +863,7 @@ ALTER TABLE ONLY cargos
 
 
 --
--- TOC entry 2135 (class 2606 OID 16958)
+-- TOC entry 2132 (class 2606 OID 16958)
 -- Name: cargos_pretendidos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -893,7 +872,7 @@ ALTER TABLE ONLY cargos_pretendidos
 
 
 --
--- TOC entry 2131 (class 2606 OID 16922)
+-- TOC entry 2128 (class 2606 OID 16922)
 -- Name: cidades_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -902,7 +881,7 @@ ALTER TABLE ONLY cidades
 
 
 --
--- TOC entry 2133 (class 2606 OID 16948)
+-- TOC entry 2130 (class 2606 OID 16948)
 -- Name: curriculo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -911,7 +890,7 @@ ALTER TABLE ONLY curriculo
 
 
 --
--- TOC entry 2127 (class 2606 OID 16904)
+-- TOC entry 2124 (class 2606 OID 16904)
 -- Name: cursos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -920,7 +899,7 @@ ALTER TABLE ONLY cursos
 
 
 --
--- TOC entry 2129 (class 2606 OID 16914)
+-- TOC entry 2126 (class 2606 OID 16914)
 -- Name: estado_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -929,7 +908,7 @@ ALTER TABLE ONLY estado
 
 
 --
--- TOC entry 2137 (class 2606 OID 16980)
+-- TOC entry 2134 (class 2606 OID 16980)
 -- Name: experiencia_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -938,7 +917,7 @@ ALTER TABLE ONLY experiencia
 
 
 --
--- TOC entry 2141 (class 2606 OID 17007)
+-- TOC entry 2138 (class 2606 OID 17007)
 -- Name: formacao_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -947,7 +926,7 @@ ALTER TABLE ONLY formacao
 
 
 --
--- TOC entry 2139 (class 2606 OID 16998)
+-- TOC entry 2136 (class 2606 OID 16998)
 -- Name: instituicoes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -956,16 +935,7 @@ ALTER TABLE ONLY instituicoes
 
 
 --
--- TOC entry 2143 (class 2606 OID 17054)
--- Name: processo_seletivo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY processo_seletivo
-    ADD CONSTRAINT processo_seletivo_pkey PRIMARY KEY (codigo_vaga, candidato_selecionado);
-
-
---
--- TOC entry 2147 (class 2606 OID 17126)
+-- TOC entry 2142 (class 2606 OID 17126)
 -- Name: vagas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -974,7 +944,7 @@ ALTER TABLE ONLY vagas
 
 
 --
--- TOC entry 2150 (class 2606 OID 16959)
+-- TOC entry 2145 (class 2606 OID 16959)
 -- Name: fk_cargos_has_curriculo_cargos1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -983,7 +953,7 @@ ALTER TABLE ONLY cargos_pretendidos
 
 
 --
--- TOC entry 2151 (class 2606 OID 16964)
+-- TOC entry 2146 (class 2606 OID 16964)
 -- Name: fk_cargos_has_curriculo_curriculo1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -992,7 +962,7 @@ ALTER TABLE ONLY cargos_pretendidos
 
 
 --
--- TOC entry 2148 (class 2606 OID 16923)
+-- TOC entry 2143 (class 2606 OID 16923)
 -- Name: fk_cidades_estado1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1001,7 +971,7 @@ ALTER TABLE ONLY cidades
 
 
 --
--- TOC entry 2149 (class 2606 OID 16949)
+-- TOC entry 2144 (class 2606 OID 16949)
 -- Name: fk_curriculo_cidades1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1010,7 +980,7 @@ ALTER TABLE ONLY curriculo
 
 
 --
--- TOC entry 2152 (class 2606 OID 16981)
+-- TOC entry 2147 (class 2606 OID 16981)
 -- Name: fk_experiencia_cargos1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1019,7 +989,7 @@ ALTER TABLE ONLY experiencia
 
 
 --
--- TOC entry 2153 (class 2606 OID 16986)
+-- TOC entry 2148 (class 2606 OID 16986)
 -- Name: fk_experiencia_curriculo1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1028,7 +998,7 @@ ALTER TABLE ONLY experiencia
 
 
 --
--- TOC entry 2154 (class 2606 OID 17008)
+-- TOC entry 2149 (class 2606 OID 17008)
 -- Name: fk_formacao_curriculo1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1037,7 +1007,7 @@ ALTER TABLE ONLY formacao
 
 
 --
--- TOC entry 2155 (class 2606 OID 17013)
+-- TOC entry 2150 (class 2606 OID 17013)
 -- Name: fk_formacao_cursos1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1046,7 +1016,7 @@ ALTER TABLE ONLY formacao
 
 
 --
--- TOC entry 2156 (class 2606 OID 17018)
+-- TOC entry 2151 (class 2606 OID 17018)
 -- Name: fk_formacao_instituicoes1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1055,16 +1025,7 @@ ALTER TABLE ONLY formacao
 
 
 --
--- TOC entry 2157 (class 2606 OID 17055)
--- Name: fk_processo_seletivo_administradores1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY processo_seletivo
-    ADD CONSTRAINT fk_processo_seletivo_administradores1 FOREIGN KEY (recrutador) REFERENCES administradores(codigo_usuario);
-
-
---
--- TOC entry 2160 (class 2606 OID 17127)
+-- TOC entry 2153 (class 2606 OID 17127)
 -- Name: fk_vagas_cidades1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1073,7 +1034,7 @@ ALTER TABLE ONLY vagas
 
 
 --
--- TOC entry 2161 (class 2606 OID 17132)
+-- TOC entry 2154 (class 2606 OID 17132)
 -- Name: fk_vagas_curriculo1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1082,7 +1043,7 @@ ALTER TABLE ONLY vagas
 
 
 --
--- TOC entry 2159 (class 2606 OID 17078)
+-- TOC entry 2152 (class 2606 OID 17078)
 -- Name: fk_vagas_has_curriculo_curriculo1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1091,16 +1052,7 @@ ALTER TABLE ONLY candidatura
 
 
 --
--- TOC entry 2158 (class 2606 OID 17060)
--- Name: fk_vagas_has_curriculo_curriculo2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY processo_seletivo
-    ADD CONSTRAINT fk_vagas_has_curriculo_curriculo2 FOREIGN KEY (candidato_selecionado) REFERENCES curriculo(idcurriculo);
-
-
---
--- TOC entry 2306 (class 0 OID 0)
+-- TOC entry 2298 (class 0 OID 0)
 -- Dependencies: 6
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -1111,7 +1063,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2017-07-11 21:55:42 BRT
+-- Completed on 2017-07-13 21:43:59 BRT
 
 --
 -- PostgreSQL database dump complete

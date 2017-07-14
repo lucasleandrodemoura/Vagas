@@ -15,6 +15,7 @@
 if(session.getValue("logado_admin")==null){
     response.sendRedirect("admin.jsp");
 }
+
 %>
 
     <%@ include file="includes/header.jsp" %>

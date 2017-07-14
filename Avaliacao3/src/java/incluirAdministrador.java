@@ -32,10 +32,14 @@ public class incluirAdministrador extends HttpServlet {
         String senha = request.getParameter("senha");
         String nome = request.getParameter("nome");
         String ativo = request.getParameter("ativo");
-        
-        
-        String sql = "INSERT INTO administradores(email,senha,nome) VALUES ('"+email+"','"+senha+"','"+nome+"');";
-        
+        int codigo_usuario = Integer.parseInt(request.getParameter("codigo_usuario"));
+        String sql = "";
+        if(codigo_usuario>0){
+            sql = "update administradores set email = '"+email+"',senha = '"+senha+"',nome = '"+nome+"' where codigo_usuario = "+codigo_usuario;
+        }else{
+            sql = "INSERT INTO administradores(email,senha,nome) VALUES ('"+email+"','"+senha+"','"+nome+"');";
+        }
+        System.out.println(sql);
         try {
             Conexao x = new Conexao();
             if(x.incluir(sql)){

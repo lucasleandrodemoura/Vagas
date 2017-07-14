@@ -81,6 +81,11 @@
                             
                                 <%=informacao.getEmail()%>
                             </div>
+                            <div class="col-lg-6">
+                                <label>Pretensao salarial:</label>
+                            
+                                R$ <%=informacao.getPretencaoSalarial()%>
+                            </div>
                         </div>
                         <div class="col-lg-12">
                             <h4>Experiencias Profissionais</h4>
