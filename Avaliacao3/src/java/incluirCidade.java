@@ -33,6 +33,7 @@ public class incluirCidade extends HttpServlet {
         
         
             int codigo_cidade = Integer.parseInt(request.getParameter("codigo_cidade"));
+            
         String sql = "";
         if(codigo_cidade>0){
             sql = "UPDATE cidades SET " +

@@ -30,7 +30,7 @@ public class incluirCurso extends HttpServlet {
         
         String nome = request.getParameter("descricao");
         String nivel = request.getParameter("nivel");
-            int codigo_curso = Integer.parseInt(request.getParameter("codigo_curso"));
+        int codigo_curso = Integer.parseInt(request.getParameter("codigo_curso"));
         String sql = "";
         if(codigo_curso>0){
          sql = "UPDATE cursos SET " +

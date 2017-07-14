@@ -16,7 +16,8 @@
                         Conexao conecta = new Conexao();
                         ResultSet x = conecta.selecionar("select * from instituicoes WHERE codigo_instituicao = "+request.getParameter("cod"));
                          Instituicoes tx = new Instituicoes();
-                        
+                         tx.setCodigoInstituicao(0);
+                            tx.setNome("");
                         while(x.next()){
                             tx.setCodigoInstituicao(x.getInt("codigo_instituicao"));
                             tx.setNome(x.getString("nome"));

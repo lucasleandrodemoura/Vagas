@@ -22,15 +22,19 @@ if(session.getValue("logado_admin")==null){
 
     <%
                         Conexao conecta2 = new Conexao();
-                        ResultSet y = conecta2.selecionar("select * from cursos WHERE codigo_curso = "+request.getParameter("cod"));
+                        ResultSet y = conecta2.selecionar("select * from cidades WHERE codigo_cidade = "+request.getParameter("cod"));
                          Cidades tx = new Cidades();
-                        
+                         tx.setCodigoCidade(0);
+                         
+                         tx.setNomeCidade("");
+                        int codigo_estado = 0;
                         while(y.next()){
-                            tx.setCodigoCidade(y.getInt("codigo_curso"));
-                            Estado t = new Estado();
-                            t.setCodigoEstado(y.getInt("codigo_estado"));
+                            tx.setCodigoCidade(y.getInt("codigo_cidade"));
                             
-                            tx.setCodigoEstado(t);
+                            codigo_estado = y.getInt("codigo_estado");
+                            
+                            
+                            
                             tx.setNomeCidade(y.getString("nome_cidade"));
                            
                         }
@@ -44,7 +48,7 @@ if(session.getValue("logado_admin")==null){
                     <div class="col-lg-12">
                         <h3>Cidades</h3>
                         <form name="formulario" method="post" action="incluirCidade">
-                            <input type="hidden" name="nome" maxlength="50" value="<%=tx.getCodigoCidade()%>" class="form-control">
+                            <input type="hidden" name="codigo_cidade" maxlength="50" value="<%=tx.getCodigoCidade()%>" class="form-control">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -54,14 +58,16 @@ if(session.getValue("logado_admin")==null){
                             <tr>
                                 <th>Estado:</th>
                                 <td><select class="form-control" required name="estado">
+                                        
              <%
                  
                         Conexao conecta = new Conexao();
                         ResultSet x = conecta.selecionar("select codigo_estado,sigla from estado ORDER BY sigla");
                         String select = "";
                         while(x.next()){
-                            if(tx.getCodigoEstado().getCodigoEstado()==Integer.parseInt(x.getString("codigo_estado"))){
-                                select = "select";
+                            select = "";
+                            if(codigo_estado==Integer.parseInt(x.getString("codigo_estado"))){
+                                select = "selected";
                             }
                             out.print("<option value='"+x.getString("codigo_estado")+"' "+select+">"+x.getString("sigla")+"</option>");
                         }

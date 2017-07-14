@@ -16,7 +16,11 @@
                         Conexao conecta = new Conexao();
                         ResultSet x = conecta.selecionar("select * from administradores WHERE codigo_usuario = "+request.getParameter("cod"));
                         Administradores administrador = new Administradores();
-                        
+                        administrador.setCodigoUsuario(0);
+                            administrador.setAtivo(false);
+                            administrador.setEmail("");
+                            administrador.setNome("");
+                            administrador.setSenha("");
                         while(x.next()){
                             administrador.setCodigoUsuario(x.getInt("codigo_usuario"));
                             administrador.setAtivo(x.getBoolean("ativo"));

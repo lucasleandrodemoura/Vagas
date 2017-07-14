@@ -34,7 +34,7 @@ public class incluirInstituicao extends HttpServlet {
         int codigo_instituicao = Integer.parseInt(request.getParameter("codigo_instituicao"));
         String sql = "";
         if(codigo_instituicao>0){
-            sql = "update administradores set nome = '"+nome+"' where codigo_usuario = "+codigo_instituicao;
+            sql = "update instituicoes set nome = '"+nome+"' where codigo_instituicao = "+codigo_instituicao;
         }else{
             sql = "INSERT INTO instituicoes(nome) VALUES ('"+nome+"');";
         }

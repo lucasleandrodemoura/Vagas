@@ -30,12 +30,19 @@ public class incluirCargo extends HttpServlet {
         
         String descricao = request.getParameter("descricao");
         
-        
-        String sql = "INSERT INTO cargos(\n" +
+        int codigo_cargo = Integer.parseInt(request.getParameter("codigo_cargo"));
+            
+        String sql = "";
+        if(codigo_cargo>0){
+            sql = "UPDATE cargos SET \n" +
+"            descricao = '"+descricao+"' where codigo_cargo = "+codigo_cargo;
+            
+        }else{
+         sql = "INSERT INTO cargos(\n" +
 "            descricao)\n" +
 "    VALUES (\n" +
 "    '"+descricao+"');";
-        
+        }
         try {
             Conexao x = new Conexao();
             if(x.incluir(sql)){

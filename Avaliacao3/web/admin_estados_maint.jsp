@@ -23,7 +23,9 @@ if(session.getValue("logado_admin")==null){
                         Conexao conecta = new Conexao();
                         ResultSet x = conecta.selecionar("select * from estado WHERE codigo_estado = "+request.getParameter("cod"));
                          Estado tx = new Estado();
-                        
+                         tx.setCodigoEstado(0);
+                            tx.setNomeEstado("");
+                            tx.setSigla("");
                         while(x.next()){
                             tx.setCodigoEstado(x.getInt("codigo_estado"));
                             tx.setNomeEstado(x.getString("nome_estado"));

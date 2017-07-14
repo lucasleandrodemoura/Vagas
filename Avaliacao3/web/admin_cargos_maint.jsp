@@ -7,10 +7,35 @@
 
 
 
+<%@page import="br.univates.progweb.models.Cargos"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="br.univates.progweb.util.Conexao"%>
 <%@page import="org.apache.catalina.session.StandardSession"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
+<% 
+if(session.getValue("logado_admin")==null){
+    response.sendRedirect("admin.jsp");
+}
+%>
+
+
+<%
+                        Conexao conecta = new Conexao();
+                        ResultSet x = conecta.selecionar("select * from cargos WHERE codigo_cargo = "+request.getParameter("cod"));
+                         Cargos tx = new Cargos();
+                         tx.setCodigoCargo(0);
+                            tx.setDescricao("");
+                            
+                        while(x.next()){
+                            tx.setCodigoCargo(x.getInt("codigo_cargo"));
+                            tx.setDescricao(x.getString("descricao"));
+                            
+                           
+                            
+                        }
+                        conecta.fechar();
+            
+                    %>
 
 
 <%@ include file="includes/header.jsp" %>
@@ -21,12 +46,12 @@
             <h3>Cargos</h3>
             
             <form name="formulario" method="post" action="incluirCargo">
-
+<input type="hidden" name="codigo_cargo" maxlength="50" value="<%=tx.getCodigoCargo()%>" class="form-control">
                 <table  class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Descrição:</th>
-                            <td><input type="text" name="descricao" maxlength="50" required class="form-control"></td>
+                            <td><input type="text" name="descricao" maxlength="50" value="<%=tx.getDescricao()%>" required class="form-control"></td>
                         </tr>
 
                     </thead>

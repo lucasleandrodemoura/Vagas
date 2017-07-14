@@ -27,7 +27,9 @@ if(session.getValue("logado_admin")==null){
                         Conexao conecta = new Conexao();
                         ResultSet x = conecta.selecionar("select * from cursos WHERE codigo_curso = "+request.getParameter("cod"));
                          Cursos tx = new Cursos();
-                        
+                        tx.setCodigoCurso(0);
+                            tx.setNivel(0);
+                            tx.setNomeCurso("");
                         while(x.next()){
                             tx.setCodigoCurso(x.getInt("codigo_curso"));
                             tx.setNivel(Integer.parseInt(x.getString("nivel")));

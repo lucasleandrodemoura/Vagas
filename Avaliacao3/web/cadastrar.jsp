@@ -15,10 +15,17 @@
 
     <%@ include file="includes/header.jsp" %>
     <%@ page import ="br.univates.progweb.models.Curriculo" %>
-    
+    <script type="text/javascript">
+        function valida(){
+            if(!validaCPF(document.getElementById("cpf").value)){
+                alert("CPF invalido!");
+                
+            }
+        }
+        </script>
     <div class="col-lg-12">
     <h3>Cadastre-se</h3>
-    <form class="form-group" name="cadastrar_basico" method="post" action="incluirCurriculo">
+    <form class="form-group" name="cadastrar_basico" onsubmit="javascript:valida();" method="post" action="incluirCurriculo">
                     <table id="dados" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -28,7 +35,7 @@
                             
                             <tr>
                                 <th>CPF: </th>
-                                <td><input class="form-control small cpf" onbluir="validaCPF(this);" type="text" maxlength="11" required name="cpf"></td>
+                                <td><input class="form-control small" id='cpf' onblur="javascript:valida();" type="text" maxlength="11" required name="cpf"></td>
                                 <th>E-mail: </th>
                                 <td><input class="form-control small" type="email" required name="email"></td>
                                 
