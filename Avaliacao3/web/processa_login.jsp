@@ -14,7 +14,11 @@
              
                 String cpf = request.getParameter("login");
                 String senha = request.getParameter("senha");
-                
+                //Esta perdendo o request.getParameter da senha, esta retornando nulo a partir do dia 15/07.
+                //Somente para o segundo registro
+                out.print(cpf);
+                out.print(senha);
+                        
                 Curriculo x = new Curriculo();
                 x.setCpf(cpf);
                 x.setSenha(senha);

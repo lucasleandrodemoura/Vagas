@@ -9,6 +9,15 @@
         <url-pattern>/incluirVaga</url-pattern>
     </servlet-mapping>
     
+    <servlet>
+        <servlet-name>incluiFormacao</servlet-name>
+        <servlet-class>incluiFormacao</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>incluiFormacao</servlet-name>
+        <url-pattern>/incluiFormacao</url-pattern>
+    </servlet-mapping>
+    
     
     <servlet>
         <servlet-name>contratarFuncionario</servlet-name>

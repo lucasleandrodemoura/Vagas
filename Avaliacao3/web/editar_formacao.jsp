@@ -31,8 +31,8 @@
         <li class="active">Formação</li>
     </ol>
 
-    <form method="post" action="incluiFormacao?codigo_formacao=<%=request.getParameter("codigo_formacao")%>&id_curriculo=<%=session.getAttribute("id_curriculo").toString()%>">
-
+    <form method="post" action="incluiFormacao">
+<input class="form-control small" value="<%=session.getAttribute("id_curriculo").toString()%>" type="text" name="id_curriculo">
         <h3>Formação</h3>
         <table id="dados" class="table table-bordered table-striped">
             <thead>
